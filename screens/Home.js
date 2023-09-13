@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef, useEffect} from "react";
 import { AdjustmentsVerticalIcon } from "react-native-heroicons/outline";
 import {
   StyleSheet,
@@ -10,11 +10,32 @@ import {
 } from "react-native";
 
 import { images, icons, COLORS, FONTS, SIZES } from "../constants";
-
+import { auth } from "../config/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { CursorArrowRaysIcon, UserCircleIcon } from "react-native-heroicons/solid";
 const Home = ({ navigation }) => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    // Set up a listener for the authentication state
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        // User is signed in
+        setUser(authUser);
+      } else {
+        // User is signed out
+        setUser(null);
+      }
+    });
+
+    return () => {
+      // Clean up the listener when the component unmounts
+      unsubscribe();
+    };
+  }
+  , []);
 
   // Dummy Data
-  const [newPlants, setNewPlants] = React.useState([
+  const [newPlants, setNewPlants] = useState([
     {
       id: 0,
       name: "Plant 1",
@@ -41,7 +62,7 @@ const Home = ({ navigation }) => {
     },
   ]);
 
-  const [friendList, setFriendList] = React.useState([
+  const [friendList, setFriendList] = useState([
     {
       id: 0,
       img: images.profile1,
@@ -64,7 +85,7 @@ const Home = ({ navigation }) => {
     },
   ]);
 
-  React.useEffect(() => {}, []);
+  useEffect(() => {}, []);
 
   // Render
 
@@ -217,7 +238,7 @@ const Home = ({ navigation }) => {
               <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
                 Upcoming Disease
               </Text>
-              <TouchableOpacity onPress={() => drawer.current.openDrawer()}>
+              <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
                 <AdjustmentsVerticalIcon size="30" color={COLORS.white} />
               </TouchableOpacity>
             </View>

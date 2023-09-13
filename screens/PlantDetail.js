@@ -3,13 +3,14 @@ import {
     StyleSheet,
     View,
     Text,
-    Image
+    Image,
 } from 'react-native';
 
 import { icons, images, COLORS, SIZES, FONTS } from '../constants';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const RequirementBar = ({ icon, barPercentage }) => {
+
     return (
         <View style={{ height: 60, alignItems: 'center' }}>
             <View
@@ -213,9 +214,10 @@ const PlantDetail = ({ navigation }) => {
                         borderBottomRightRadius: 30,
                         backgroundColor: COLORS.primary
                     }}
-                    onPress={() => { console.log("Take Action") }}
+                    //onPress navigate to ChatBot screen
+                    onPress={() => { navigation.navigate("ChatBot") }}
                 >
-                    <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Take Action</Text>
+                    <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Ask more</Text>
 
                     <Image
                         source={icons.chevron}

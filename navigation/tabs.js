@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, Image, Touchable } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ChatBot, Home, Weather} from "../screens/";
+import { ChatBot, Home, Profile, Weather} from "../screens/";
 import { pickImage, pickImageFromGallery } from '../utils/imgpick';
-import {HomeIcon,CloudIcon, UserGroupIcon, MagnifyingGlassIcon, CameraIcon, HeartIcon} from "react-native-heroicons/outline";
+import {HomeIcon,CloudIcon, UserGroupIcon, MagnifyingGlassIcon, CameraIcon, HeartIcon, UserCircleIcon, ChatBubbleLeftEllipsisIcon} from "react-native-heroicons/outline";
 import { COLORS } from "../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 const Tab = createBottomTabNavigator();
@@ -43,12 +43,13 @@ const Tabs = () => {
     };
 
     return (
-        <Tab.Navigator
+        <Tab.Navigator 
             screenOptions={({ route }) => ({
+                tabBarHideOnKeyboard: true,
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: {
-                    height: "10%",
+                    height: "8%",
                     width: "100%",
                     alignSelf: 'center',
                     display: 'flex',
@@ -57,7 +58,7 @@ const Tabs = () => {
                     borderTopRightRadius: 20,
                 },
                 tabBarIcon: ({ focused }) => {
-                    const tintColor = focused ? COLORS.primary : COLORS.gray;
+                    const tintColor = focused ? COLORS.primary : COLORS.black;
 
                     switch (route.name) {
                         case "Home":
@@ -86,6 +87,18 @@ const Tabs = () => {
                             return (
                                 <UserGroupIcon size="35" color={tintColor}/>
                             );
+                            case "ChatBot":
+                                return (
+                                    <ChatBubbleLeftEllipsisIcon size="35" color={tintColor}/>
+                                );
+                            case "Profile":
+                                return (
+                                    <UserCircleIcon size="35" color={tintColor}/>
+                                );
+                            case "Drawer":
+                                return (
+                                    <CursorArrowRaysIcon size="35" color={tintColor}/>
+                                );
                     }
                 }
             })}
@@ -102,14 +115,15 @@ const Tabs = () => {
                 name="Camera"
                 component={Home}
             />
+            {/* <Tab.Screen
+                name="Profile"
+                component={Profile}
+            /> */}
             <Tab.Screen
-                name="Search"
-                component={Home}
-            />
-            <Tab.Screen
-                name="Community"
+                name="ChatBot"
                 component={ChatBot}
             />
+            {/* <Tab.Screen name = "Drawer" component={DrawerRoutes} /> */}
         </Tab.Navigator>
     );
 };
