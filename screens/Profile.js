@@ -172,8 +172,6 @@ const Profile = ({ navigation }) => {
         backgroundColor: COLORS.white,
       }}
     >
-      <StatusBar backgroundColor={COLORS.white} />
-
       <View style={{ width: "100%" }}>
         <Image
           source={images.cover}
@@ -183,6 +181,21 @@ const Profile = ({ navigation }) => {
             width: "100%",
           }}
         />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Home")}
+          style={{
+            marginTop: 48,
+            marginLeft: 12,
+            position: "absolute",
+            left: 0,
+          }}
+        >
+          <MaterialIcons
+            name="keyboard-arrow-left"
+            size={45}
+            color={COLORS.primary}
+          />
+        </TouchableOpacity>
       </View>
 
       <View style={{ flex: 1, alignItems: "center" }}>

@@ -133,7 +133,6 @@ const Settings = ({ navigation }) => {
       style={{
         flex: 1,
         backgroundColor: COLORS.white,
-        // Make the screen slide from the left side
       }}
     >
       <View
