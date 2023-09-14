@@ -6,6 +6,7 @@ import Welcome from "./Welcome";
 import Signup from "./Signup";
 import Login from "./Login";
 import Profile from "./Profile";
+import Settings from "./Settings";
 
 export {
     Welcome,
@@ -16,4 +17,5 @@ export {
     Signup,
     Login,
     Profile,
+    Settings,
 };

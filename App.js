@@ -1,13 +1,26 @@
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebaseConfig";
 // screens
-import { PlantDetail, Welcome, Signup, Login, Profile } from "./screens";
+import {
+  PlantDetail,
+  Welcome,
+  Signup,
+  Login,
+  Profile,
+  ChatBot,
+  Settings,
+} from "./screens";
 // extra screens
 import Tabs from "./navigation/tabs";
+import {
+  TransitionSpecs,
+  HeaderStyleInterpolators,
+} from "@react-navigation/stack";
+
 // import DrawerRoutes from "./navigation/drawers";
 
 import { useFonts } from "expo-font";
@@ -59,13 +72,45 @@ const App = () => {
         {/* Tabs */}
         {user ? (
           <>
-          <Stack.Screen name="HomeTabs" component={Tabs} />
-          <Stack.Screen
-              name ="Profile"
+            <Stack.Screen name="HomeTabs" component={Tabs} />
+            <Stack.Screen
+              name="Profile"
               component={Profile}
               options={{ headerShown: false }}
             />
-          {/* <Stack.Screen name ="HomeTabs" component={DrawerRoutes} /> */}
+            <Stack.Screen
+              name="ChatBot"
+              component={ChatBot}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Settings"
+              options={{
+                headerShown: false,
+                cardStyleInterpolator: ({ current, next, layouts }) => {
+                  return {
+                    cardStyle: {
+                      transform: [
+                        {
+                          translateX: current.progress.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [layouts.screen.width, 0],
+                          }),
+                        },
+                      ],
+                    },
+                    overlayStyle: {
+                      opacity: current.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, 0.5],
+                      }),
+                    },
+                  };
+                },
+              }}
+              component={Settings}
+            />
+            {/* <Stack.Screen name ="HomeTabs" component={DrawerRoutes} /> */}
           </>
         ) : (
           <>
@@ -85,7 +130,6 @@ const App = () => {
               component={Login}
               options={{ headerShown: false }}
             />
-            
           </>
         )}
         <Stack.Screen

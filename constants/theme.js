@@ -11,6 +11,8 @@ export const COLORS = {
     white: "#FFFFFF",
     lightGray: "#eff2f5",
     gray: "#BEC1D2",
+    red: "#FF0000",
+    yellow: "#FFD573",
 };
 export const SIZES = {
     // global sizes
@@ -35,8 +37,8 @@ export const SIZES = {
     height
 };
 export const FONTS = {
-    largeTitle: { fontFamily: "AdventPro-Black", fontSize: SIZES.largeTitle, lineHeight: 55 },
-    h1: { fontFamily: "AdventPro-Black", fontSize: SIZES.h1, lineHeight: 36 },
+    largeTitle: { fontFamily: "AdventPro-Bold", fontSize: SIZES.largeTitle, lineHeight: 55 },
+    h1: { fontFamily: "AdventPro-Bold", fontSize: SIZES.h1, lineHeight: 36 },
     h2: { fontFamily: "AdventPro-Bold", fontSize: SIZES.h2, lineHeight: 30 },
     h3: { fontFamily: "AdventPro-Bold", fontSize: SIZES.h3, lineHeight: 22 },
     h4: { fontFamily: "AdventPro-Bold", fontSize: SIZES.h4, lineHeight: 22 },

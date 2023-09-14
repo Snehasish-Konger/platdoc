@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^19.0.0",
     "@google-ai/generativelanguage": "^1.0.1",
     "@react-native-async-storage/async-storage": "^1.18.2",
@@ -45,6 +46,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "13.9.0",
+    "react-native-tab-view": "^3.5.2",
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-export const plant1 = require("../assets/images/plant_1.jpeg");
+export const plant1 = require("../assets/images/plant_1.jpg");
 export const plant2 = require("../assets/images/plant_2.jpg");
 export const plant3 = require("../assets/images/plant_3.jpg");
 export const plant4 = require("../assets/images/plant_4.jpg");
@@ -11,6 +11,7 @@ export const profile3 = require("../assets/images/profile_3.jpg");
 export const profile4 = require("../assets/images/profile_4.jpg");
 export const profile5 = require("../assets/images/profile_5.jpg");
 export const bannerBg = require("../assets/images/banner_bg.jpg");
+export const profile = require("../assets/images/profile.jpg");
 
 
 export default {
@@ -26,5 +27,6 @@ export default {
     profile3,
     profile4,
     profile5,
-    bannerBg
+    bannerBg,
+    profile
 }

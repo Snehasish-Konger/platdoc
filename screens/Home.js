@@ -38,25 +38,25 @@ const Home = ({ navigation }) => {
   const [newPlants, setNewPlants] = useState([
     {
       id: 0,
-      name: "Plant 1",
+      name: "Net Blitch",
       img: images.plant1,
       favourite: false,
     },
     {
       id: 1,
-      name: "Plant 2",
+      name: "Stripe rust",
       img: images.plant2,
       favourite: true,
     },
     {
       id: 2,
-      name: "Plant 3",
+      name: "Leaf Spot",
       img: images.plant3,
       favourite: false,
     },
     {
       id: 3,
-      name: "Plant 4",
+      name: "Disease 4",
       img: images.plant4,
       favourite: false,
     },
@@ -236,9 +236,9 @@ const Home = ({ navigation }) => {
               }}
             >
               <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
-                Upcoming Disease
+                Upcoming Seasonal Disease
               </Text>
-              <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+              <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
                 <AdjustmentsVerticalIcon size="30" color={COLORS.white} />
               </TouchableOpacity>
             </View>
@@ -368,7 +368,7 @@ const Home = ({ navigation }) => {
             style={{ marginTop: SIZES.radius, marginHorizontal: SIZES.padding }}
           >
             <Text style={{ color: COLORS.secondary, ...FONTS.h2 }}>
-              Added Farmers
+              Added Experts
             </Text>
             <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>
               {friendList.length} total

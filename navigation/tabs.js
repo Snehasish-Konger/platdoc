@@ -8,12 +8,12 @@ import { COLORS } from "../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 const Tab = createBottomTabNavigator();
 
-const tabOptions = {
-    showLabel: false,
-    style: {
-        height: "10%",
-    },
-};
+// const tabOptions = {
+//     showLabel: false,
+//     style: {
+//         height: "10%",
+//     },
+// };
 
 const CameraButton = () => {
     return (
@@ -21,13 +21,14 @@ const CameraButton = () => {
             style={{
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: 50,
-                height: 50,
-                borderRadius: 25,
+                width: 60,
+                height: 60,
+                borderRadius: 35,
                 backgroundColor: COLORS.primary,
+                marginBottom: 60,
             }}
         >
-            <CameraIcon size="30" color={COLORS.white}/>
+            <CameraIcon size="40" color={COLORS.white}/>
         </View>
     );
 };
@@ -49,7 +50,7 @@ const Tabs = () => {
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: {
-                    height: "8%",
+                    height: "7%",
                     width: "100%",
                     alignSelf: 'center',
                     display: 'flex',
@@ -115,15 +116,14 @@ const Tabs = () => {
                 name="Camera"
                 component={Home}
             />
-            {/* <Tab.Screen
-                name="Profile"
+            <Tab.Screen
+                name="Community"
                 component={Profile}
-            /> */}
+            />
             <Tab.Screen
                 name="ChatBot"
                 component={ChatBot}
             />
-            {/* <Tab.Screen name = "Drawer" component={DrawerRoutes} /> */}
         </Tab.Navigator>
     );
 };
