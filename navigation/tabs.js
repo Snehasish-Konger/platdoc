@@ -25,7 +25,7 @@ const CameraButton = () => {
                 height: 60,
                 borderRadius: 35,
                 backgroundColor: COLORS.primary,
-                marginBottom: 60,
+                marginBottom: 40,
             }}
         >
             <CameraIcon size="40" color={COLORS.white}/>
@@ -55,8 +55,8 @@ const Tabs = () => {
                     alignSelf: 'center',
                     display: 'flex',
                     justifyContent: 'center',
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
+                    borderTopLeftRadius: 30,
+                    borderTopRightRadius: 30,
                 },
                 tabBarIcon: ({ focused }) => {
                     const tintColor = focused ? COLORS.primary : COLORS.black;
@@ -119,10 +119,6 @@ const Tabs = () => {
             <Tab.Screen
                 name="Community"
                 component={Profile}
-            />
-            <Tab.Screen
-                name="ChatBot"
-                component={ChatBot}
             />
         </Tab.Navigator>
     );

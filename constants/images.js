@@ -13,6 +13,8 @@ export const profile5 = require("../assets/images/profile_5.jpg");
 export const bannerBg = require("../assets/images/banner_bg.jpg");
 export const profile = require("../assets/images/profile.jpg");
 export const cover = require("../assets/images/cover.jpg");
+export const anim = require("../assets/images/anim.gif");
+export const splash = require("../assets/images/splash.gif");
 
 
 export default {
@@ -30,5 +32,7 @@ export default {
     profile5,
     bannerBg,
     profile,
-    cover
+    cover,
+    anim,
+    splash
 }

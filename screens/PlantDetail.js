@@ -192,7 +192,7 @@ const PlantDetail = ({ navigation }) => {
           justifyContent: "space-around",
         }}
       >
-        <RequirementDetail icon={icons.sun} label="Sunlight" detail="15°C" />
+        <RequirementDetail icon={icons.sun} label="Sunlight" detail= "5 Hours" />
         <RequirementDetail
           icon={icons.drop}
           label="Water"
@@ -207,7 +207,7 @@ const PlantDetail = ({ navigation }) => {
         <RequirementDetail
           icon={icons.seed}
           label="Fertilizer"
-          detail="150 Mg"
+          detail="150 Mg/Sq.m"
         />
       </View>
     );
@@ -333,7 +333,7 @@ const PlantDetail = ({ navigation }) => {
             ...FONTS.h1,
           }}
         >
-          Requirements
+          Required Solution
         </Text>
 
         {renderRequirementsBar()}
