@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "PlantDoc",
+    "description": "PlantDoc is an App-Based Solution to identify and solve disease in plants/crops",
     "slug": "PlantDoc",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -29,10 +30,8 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "176d7504-95a5-4ad2-a3ce-510910c83ccc"
-      }
+    "eas": {
+      "projectId": "76884007-6226-46d0-9cca-99e3e5df181a"
     }
   }
 }
