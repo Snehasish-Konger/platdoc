@@ -31,7 +31,7 @@ const Settings = ({ navigation }) => {
   };
 
   const navigateToSecurity = () => {
-    console.log("Security function");
+    navigation.navigate("ExpertHome");
   };
 
   const navigateToNotifications = () => {

@@ -4,6 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebaseConfig";
+// import * as SplashScreen from 'expo-splash-screen';
+// import SplashScreenComponent from "./components/SplashScreenComponent";
+
 // screens
 import {
   PlantDetail,
@@ -13,6 +16,10 @@ import {
   Profile,
   ChatBot,
   Settings,
+  ExpertHome,
+  // ExpertProfile,
+  CourseList,
+  Cources,
 } from "./screens";
 // extra screens
 import Tabs from "./navigation/tabs";
@@ -34,9 +41,9 @@ const theme = {
 };
 
 const Stack = createStackNavigator();
-
 const App = () => {
   const [user, setUser] = useState(null);
+  // const [splashFinished, setSplashFinished] = useState(false);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
@@ -49,14 +56,21 @@ const App = () => {
     });
 
     // Unsubscribe from the listener when the component unmounts
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    }
   }, []);
 
   const [loaded] = useFonts({
-    "AdventPro-Black": require("./assets/fonts/AdventPro-Black.ttf"),
-    "AdventPro-Bold": require("./assets/fonts/AdventPro-Bold.ttf"),
-    "AdventPro-Regular": require("./assets/fonts/AdventPro-Regular.ttf"),
+    "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
+    "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   });
+
+//   if (!splashFinished) {
+//     return <SplashScreenComponent onFinish={() => setSplashFinished(true)} />;
+// };
 
   if (!loaded) {
     return null;
@@ -81,6 +95,22 @@ const App = () => {
             <Stack.Screen
               name="ChatBot"
               component={ChatBot}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ExpertHome"
+              component={ExpertHome}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="CourseList"
+              component={CourseList}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="Cources"
+              component={Cources}
               options={{ headerShown: false }}
             />
             <Stack.Screen

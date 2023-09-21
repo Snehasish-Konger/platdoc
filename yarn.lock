@@ -3802,6 +3802,15 @@ cliui@^6.0.0:
     strip-ansi "^6.0.0"
     wrap-ansi "^6.2.0"
 
+cliui@^7.0.2:
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/cliui/-/cliui-7.0.4.tgz#a0265ee655476fc807aea9df3df8df7783808b4f"
+  integrity sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==
+  dependencies:
+    string-width "^4.2.0"
+    strip-ansi "^6.0.0"
+    wrap-ansi "^7.0.0"
+
 cliui@^8.0.1:
   version "8.0.1"
   resolved "https://registry.npmjs.org/cliui/-/cliui-8.0.1.tgz"
@@ -4397,6 +4406,15 @@ deprecated-react-native-prop-types@4.1.0:
     invariant "*"
     prop-types "*"
 
+deprecated-react-native-prop-types@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-4.2.1.tgz#8cc990ff5319fec8306e7e8f30389a92978a7231"
+  integrity sha512-ef9AXisRrRhxuxd7d+noOEeGTtxIPVkfOQWf9WZUWuOqI+gs7P7hKTi49Rgb/dfvkmFULhwxO2UqAkH4nJsMfw==
+  dependencies:
+    "@react-native/normalize-colors" "*"
+    invariant "*"
+    prop-types "*"
+
 destroy@1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz"
@@ -4810,7 +4828,7 @@ expo-linear-gradient@~12.3.0:
   resolved "https://registry.npmjs.org/expo-linear-gradient/-/expo-linear-gradient-12.3.0.tgz"
   integrity sha512-f9e+Oxe5z7fNQarTBZXilMyswlkbYWQHONVfq8MqmiEnW3h9XsxxmVJLG8uVQSQPUsbW+x1UUT/tnU6mkMWeLg==
 
-expo-modules-autolinking@1.5.1:
+expo-modules-autolinking@1.5.1, expo-modules-autolinking@^1.5.1:
   version "1.5.1"
   resolved "https://registry.npmjs.org/expo-modules-autolinking/-/expo-modules-autolinking-1.5.1.tgz"
   integrity sha512-yt5a1VCp2BF9CrsO689PCD5oXKP14MMhnOanQMvDn4BDpURYfzAlDVGC5fZrNQKtwn/eq3bcrxIwZ7D9QjVVRg==
@@ -4839,6 +4857,13 @@ expo-pwa@0.0.127:
     chalk "^4.0.0"
     commander "2.20.0"
     update-check "1.5.3"
+
+expo-splash-screen@~0.20.5:
+  version "0.20.5"
+  resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.20.5.tgz#ebeba3e3977606830f74f506ab2cc25042bb7efd"
+  integrity sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==
+  dependencies:
+    "@expo/prebuild-config" "6.2.6"
 
 expo-status-bar@~1.6.0:
   version "1.6.0"
@@ -8201,6 +8226,11 @@ react-native-lightbox-v2@0.9.0:
   resolved "https://registry.npmjs.org/react-native-lightbox-v2/-/react-native-lightbox-v2-0.9.0.tgz"
   integrity sha512-Fc5VFHFj2vokS+OegyTsANKb1CYoUlOtAv+EBH5wtpJn1b5cey6jVXH7136G5+8OC9JmKWSgKHc5thFwOoZTUg==
 
+react-native-modalize@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-modalize/-/react-native-modalize-2.1.1.tgz#dcb67d208f4c5bdc76f45075e727be43fd008561"
+  integrity sha512-4/7EZWsrUqAAkkAVEnOsSdpAPQaEBewX7TvwFuzgvGDzxKpq3O58I9SnSeU8QtG/r91XYHJNaU5dAuDrcLjUaQ==
+
 react-native-onboarding-swiper@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/react-native-onboarding-swiper/-/react-native-onboarding-swiper-1.2.0.tgz"
@@ -8219,6 +8249,11 @@ react-native-parsed-text@0.0.22:
   integrity sha512-hfD83RDXZf9Fvth3DowR7j65fMnlqM9PpxZBGWkzVcUTFtqe6/yPcIoIAgrJbKn6YmtzkivmhWE2MCE4JKBXrQ==
   dependencies:
     prop-types "^15.7.x"
+
+react-native-progress-circle@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-progress-circle/-/react-native-progress-circle-2.1.0.tgz#62bdf31c76962d10c5c14446b61ff7d05cf0d0ec"
+  integrity sha512-VP0s92bgbTMQy4hQzPU4LlGyFj3z5u7i1HYFG8/yzXXfGkX1cxKS4xOlE+OTaObWC99w7Bodi3h8R7En2nQPYw==
 
 react-native-progress@^5.0.0:
   version "5.0.0"
@@ -8286,6 +8321,19 @@ react-native-typing-animation@0.1.7:
   version "0.1.7"
   resolved "https://registry.npmjs.org/react-native-typing-animation/-/react-native-typing-animation-0.1.7.tgz"
   integrity sha512-4H3rF9M+I2yAZpYJcY0Mb29TXkn98QK12rrKSY6LZj1BQD9NNmRZuNXzwX4XHapsIz+N/J8M3p27FOQPbfzqeg==
+
+react-native-vector-icons@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-10.0.0.tgz#0f031f7717f76f0a397f725de9b5a47ec87862e9"
+  integrity sha512-efMOVbZIebY8RszZPzPBoXi9pvD/NFYmjIDYxRoc9LYSzV8rMJtT8FfcO2hPu85Rn2x9xktha0+qn0B7EqMAcQ==
+  dependencies:
+    prop-types "^15.7.2"
+    yargs "^16.1.1"
+
+react-native-voximplant@^1.40.0-beta:
+  version "1.40.0-beta"
+  resolved "https://registry.yarnpkg.com/react-native-voximplant/-/react-native-voximplant-1.40.0-beta.tgz#fa979dd13a25ca8f85498177ef08a36fbf983fe1"
+  integrity sha512-YUVemFJG3yOzYATj4i5VVoO0KFJQjzieoX55siX4ASP2f8vcmBv2/zkaLd+/WQDL9pVClCLFftIub6UyGYP9zA==
 
 react-native-web@~0.19.6:
   version "0.19.7"
@@ -9952,6 +10000,11 @@ yargs-parser@^18.1.2:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
+yargs-parser@^20.2.2:
+  version "20.2.9"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-20.2.9.tgz#2eb7dc3b0289718fc295f362753845c41a0c94ee"
+  integrity sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==
+
 yargs-parser@^21.1.1:
   version "21.1.1"
   resolved "https://registry.npmjs.org/yargs-parser/-/yargs-parser-21.1.1.tgz"
@@ -9973,6 +10026,19 @@ yargs@^15.1.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
+
+yargs@^16.1.1:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-16.2.0.tgz#1c82bf0f6b6a66eafce7ef30e376f49a12477f66"
+  integrity sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==
+  dependencies:
+    cliui "^7.0.2"
+    escalade "^3.1.1"
+    get-caller-file "^2.0.5"
+    require-directory "^2.1.1"
+    string-width "^4.2.0"
+    y18n "^5.0.5"
+    yargs-parser "^20.2.2"
 
 yargs@^17.6.2, yargs@^17.7.2:
   version "17.7.2"
