@@ -1,12 +1,10 @@
-import "react-native-gesture-handler";
+import 'react-native-gesture-handler';
 import React, { useState, useEffect } from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebaseConfig";
-// import * as SplashScreen from 'expo-splash-screen';
-// import SplashScreenComponent from "./components/SplashScreenComponent";
-
+import { IntroductionAnimationScreen } from './introduction_animation';
 // screens
 import {
   PlantDetail,
@@ -23,12 +21,7 @@ import {
 } from "./screens";
 // extra screens
 import Tabs from "./navigation/tabs";
-import {
-  TransitionSpecs,
-  HeaderStyleInterpolators,
-} from "@react-navigation/stack";
 
-// import DrawerRoutes from "./navigation/drawers";
 
 import { useFonts } from "expo-font";
 
@@ -40,10 +33,9 @@ const theme = {
   },
 };
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const App = () => {
   const [user, setUser] = useState(null);
-  // const [splashFinished, setSplashFinished] = useState(false);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
@@ -68,13 +60,10 @@ const App = () => {
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   });
 
-//   if (!splashFinished) {
-//     return <SplashScreenComponent onFinish={() => setSplashFinished(true)} />;
-// };
-
   if (!loaded) {
     return null;
   }
+  
   return (
     <NavigationContainer theme={theme}>
       <Stack.Navigator
@@ -111,6 +100,11 @@ const App = () => {
             <Stack.Screen
               name="Cources"
               component={Cources}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="IntroductionAnimationScreen"
+              component={IntroductionAnimationScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -172,6 +166,4 @@ const App = () => {
   );
 };
 
-export default () => {
-  return <App />;
-};
+export default App;
