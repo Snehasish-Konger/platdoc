@@ -1,6 +1,5 @@
 import React from 'react'
-import {View,Text,ImageBackground,TouchableOpacity,Image} from 'react-native'
-import {ScrollView,TextInput} from 'react-native-gesture-handler'
+import {View,Text,ImageBackground,TouchableOpacity,Image, ScrollView, TextInput} from 'react-native'
 import CourseList from '../screens/CourseList'
 import {FONTS, COLORS, SIZES} from '../constants'
 

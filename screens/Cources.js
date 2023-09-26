@@ -9,9 +9,12 @@ import {
 import { Modalize } from "react-native-modalize";
 import CourseList from "./CourseList";
 import {FONTS, COLORS, SIZES} from '../constants'
+import { GestureHandlerRootView ,TapGestureHandler } from "react-native-gesture-handler";
 
 const Cources = ({ navigation }) => {
   return (
+    <GestureHandlerRootView>
+    <TapGestureHandler>
     <ImageBackground
       source={require("../assets/images/cat.png")}
       style={{ width: "100%", height: "100%" }}
@@ -123,6 +126,8 @@ const Cources = ({ navigation }) => {
         </View>
       </Modalize>
     </ImageBackground>
+    </TapGestureHandler>
+    </GestureHandlerRootView>
   );
 };
 export default Cources;
