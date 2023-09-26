@@ -32,7 +32,7 @@ const CameraButton = () => {
     );
 };
 
-const Tabs = () => {
+const Tabs = ({navigation}) => {
     const [image, setImage] = useState(null);
     const handleImage = async () => {
         let result = await pickImageFromGallery();
@@ -40,6 +40,7 @@ const Tabs = () => {
         if (!result.canceled) {
             setImage(result.uri);
         }
+        navigation.navigate("IntroductionAnimationScreen");
     };
 
     return (

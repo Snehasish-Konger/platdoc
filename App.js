@@ -56,6 +56,12 @@ const App = () => {
     "Roboto-Black": require("./assets/fonts/Roboto-Black.ttf"),
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Thin": require("./assets/fonts/Roboto-Thin.ttf"),
+    "WorkSans-Regular": require("./assets/fonts/WorkSans-Regular.ttf"),
+    "WorkSans-Bold": require("./assets/fonts/WorkSans-Bold.ttf"),
+    "WorkSans-Medium": require("./assets/fonts/WorkSans-Medium.ttf"),
+    "WorkSans-SemiBold": require("./assets/fonts/WorkSans-SemiBold.ttf"),
   });
 
   if (!loaded) {

@@ -45,10 +45,10 @@ const SplashView: React.FC<Props> = ({ onNextClick, animationController }) => {
             source={AppImages.introduction_image}
           />
         </View>
-        <Text style={styles.title}>Clearhead</Text>
+        <Text style={styles.title}>Question Answer</Text>
         <Text style={styles.subtitle}>
-          Lorem ipsum dolor sit amet,consectetur{'\n'}adipiscing elit,sed do
-          eiusmod tempor{'\n'}incididunt ut labore
+          Now, let's answer some questions to help us understand your plant and your
+          environment better.
         </Text>
       </ScrollView>
 

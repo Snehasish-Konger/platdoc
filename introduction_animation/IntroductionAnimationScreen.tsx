@@ -5,7 +5,6 @@ import {
   useWindowDimensions,
   Animated,
   Easing,
-  StatusBar,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -91,7 +90,6 @@ const IntroductionAnimationScreen: React.FC = () => {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'rgb(245, 235, 226)' }}>
-      <StatusBar barStyle={`${currentPage > 0 ? 'dark' : 'light'}-content`} />
       <SplashView {...{ onNextClick, animationController }} />
 
       <Animated.View
