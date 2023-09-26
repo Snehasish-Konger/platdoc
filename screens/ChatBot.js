@@ -25,8 +25,10 @@ import {
 } from "react-native-heroicons/outline";
 import { pickImageFromGallery } from "../utils/imgpick";
 import { MaterialIcons } from "@expo/vector-icons";
+import Constants from "expo-constants";
 
-const PALM_API_KEY = "AIzaSyAwkJI6LlP0sb3P0-BxVPwMoB4qg2aLR4s"; // Replace with your API Key
+
+const PALM_API_KEY = Constants.expoConfig.extra.palmKey; 
 
 const Chatbot = ({ navigation }) => {
   const [messages, setMessages] = useState([]);
@@ -47,7 +49,7 @@ const Chatbot = ({ navigation }) => {
       return;
     }
     setLoading(true);
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta2/models/chat-bison-001:generateMessage`;
+    const apiUrl = Constants.expoConfig.extra.palmURL;
   
     let requestData;
   

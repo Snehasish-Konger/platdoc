@@ -1,10 +1,10 @@
-import 'react-native-gesture-handler';
 import React, { useState, useEffect } from "react";
+import 'react-native-gesture-handler';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebaseConfig";
-import { IntroductionAnimationScreen } from './introduction_animation';
+import { IntroductionAnimationScreen } from "./introduction_animation";
 // screens
 import {
   PlantDetail,
@@ -15,14 +15,12 @@ import {
   ChatBot,
   Settings,
   ExpertHome,
-  // ExpertProfile,
   CourseList,
   Cources,
 } from "./screens";
-// extra screens
+// Tab Navigator
 import Tabs from "./navigation/tabs";
-
-
+// Font
 import { useFonts } from "expo-font";
 
 const theme = {
@@ -50,7 +48,7 @@ const App = () => {
     // Unsubscribe from the listener when the component unmounts
     return () => {
       unsubscribe();
-    }
+    };
   }, []);
 
   const [loaded] = useFonts({
@@ -63,7 +61,7 @@ const App = () => {
   if (!loaded) {
     return null;
   }
-  
+
   return (
     <NavigationContainer theme={theme}>
       <Stack.Navigator
@@ -134,7 +132,6 @@ const App = () => {
               }}
               component={Settings}
             />
-            {/* <Stack.Screen name ="HomeTabs" component={DrawerRoutes} /> */}
           </>
         ) : (
           <>

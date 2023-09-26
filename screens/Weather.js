@@ -10,7 +10,7 @@ import { StatusBar } from 'expo-status-bar';
 import { weatherImages } from '../constants/weatherapi';
 import { getData, storeData } from '../utils/asyncStorage';
 
-export default function Weather() {
+const Weather = ()=>{
   const [showSearch, toggleSearch] = useState(false);
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -228,3 +228,5 @@ export default function Weather() {
     </View>
   )
 }
+
+export default Weather;

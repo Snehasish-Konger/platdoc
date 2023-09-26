@@ -3,7 +3,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, FONTS } from "../constants";
 
-export default function Welcome({ navigation }) {
+const Welcome = ({ navigation }) => {
   return (
     <SafeAreaView
       className="flex-1"
@@ -59,3 +59,4 @@ export default function Welcome({ navigation }) {
     </SafeAreaView>
   );
 }
+export default Welcome;

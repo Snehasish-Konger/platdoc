@@ -1,4 +1,5 @@
-export const apiKey = 'f4ad7b090b4443beb92151136231009';
+import Constants from "expo-constants";
+export const apiKey = Constants.expoConfig.extra.weatherKey;
 
 export const weatherImages = {
     'Partly cloudy': require('../assets/images/partlycloudy.png'),

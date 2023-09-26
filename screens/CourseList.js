@@ -3,6 +3,9 @@ import { Text, TouchableOpacity, View, Image } from "react-native";
 import ProgressCircle from "react-native-progress-circle";
 
 const CourseList = ({navigation, img, title, bg, onPress }) => {
+  onPress = () => {
+    navigation.navigate("Chapter");
+  };
   return (
     <TouchableOpacity
       onPress={onPress}

@@ -6,7 +6,7 @@ import { COLORS } from "../constants";
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, database } from "../config/firebaseConfig";
 
-export default function Login({ navigation }) {
+const Login = ({ navigation })=> {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -118,3 +118,4 @@ export default function Login({ navigation }) {
     </View>
   );
 }
+export default Login;

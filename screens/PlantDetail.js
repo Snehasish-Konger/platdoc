@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 
 import { icons, images, COLORS, SIZES, FONTS } from "../constants";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 const RequirementBar = ({ icon, barPercentage }) => {
   return (

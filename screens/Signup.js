@@ -19,7 +19,7 @@ import {
 } from "firebase/firestore";
 
 // subscribe for more videos like this :)
-export default function Signup({ navigation }) {
+const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -163,3 +163,4 @@ export default function Signup({ navigation }) {
     </View>
   );
 }
+export default Signup;

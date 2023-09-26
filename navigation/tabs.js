@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, Image, Touchable } from 'react-native';
+import { View, Text, Image, Touchable, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ChatBot, Home, Profile, Weather} from "../screens/";
 import { pickImage, pickImageFromGallery } from '../utils/imgpick';
 import {HomeIcon,CloudIcon, UserGroupIcon, MagnifyingGlassIcon, CameraIcon, HeartIcon, UserCircleIcon, ChatBubbleLeftEllipsisIcon} from "react-native-heroicons/outline";
 import { COLORS } from "../constants";
-import { TouchableOpacity } from "react-native-gesture-handler";
 const Tab = createBottomTabNavigator();
 
 // const tabOptions = {

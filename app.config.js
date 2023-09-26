@@ -35,7 +35,9 @@ export default {
       storageBucket: process.env.STORAGE_BUCKET,
       messagingSenderId: process.env.MESSAGING_SENDER_ID,
       appId: process.env.APP_ID,
-
+      palmURL: process.env.PALM_URL,
+      palmKey: process.env.PALM_KEY,
+      weatherKey: process.env.WEATHER_KEY,
       eas: {
         projectId: "76884007-6226-46d0-9cca-99e3e5df181a",
       },
