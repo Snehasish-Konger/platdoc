@@ -11,6 +11,7 @@ import ExpertHome from "./ExpertHome";
 import CourseList from "./CourseList";
 import Cources from "./Cources";
 import Chapters from "./Chapter";
+import Payment from "./Payment";
 // import IncomingCallScreen from "./VideoCall/IncomingCallScreen";
 // import CallingScreen from "./VideoCall/CallingScreen";
 
@@ -28,6 +29,7 @@ export {
     CourseList,
     Cources,
     Chapters,
+    Payment,
     // IncomingCallScreen,
     // CallingScreen
 };

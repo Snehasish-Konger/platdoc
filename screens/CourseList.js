@@ -1,8 +1,9 @@
 import React from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import ProgressCircle from "react-native-progress-circle";
+import { SIZES, COLORS } from "../constants";
 
-const CourseList = ({navigation, img, title, bg, onPress }) => {
+const CourseList = ({navigation, img, title, time, desc, bg, onPress }) => {
   onPress = () => {
     navigation.navigate("Chapter");
   };
@@ -24,13 +25,23 @@ const CourseList = ({navigation, img, title, bg, onPress }) => {
       <View>
         <Text
           style={{
-            color: "#345c74",
+            color: COLORS.black,
             fontSize: 13,
             paddingHorizontal: 20,
-            width: 170,
+            width: 240,
           }}
         >
           {title}
+        </Text>
+        <Text
+          style={{
+            color: COLORS.secondary,
+            fontSize: 12,
+            paddingHorizontal: 20,
+            width: 250,
+          }}
+        >
+          {desc}
         </Text>
         <Text
           style={{
@@ -39,7 +50,7 @@ const CourseList = ({navigation, img, title, bg, onPress }) => {
             paddingHorizontal: 20,
           }}
         >
-          10 hours, 19 lessons
+          {time}
         </Text>
       </View>
       <Text

@@ -21,7 +21,7 @@ const ExpertHome = ({navigation}) => {
                            paddingVertical:12,
                            borderRadius:10,
                            marginTop:30,
-                           backgroundColor:"#d1a0a7"
+                           backgroundColor: COLORS.lightBlue
                        }}>
                         <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
                            <Image
@@ -37,7 +37,7 @@ const ExpertHome = ({navigation}) => {
                        paddingTop:40,
                        color:"#FFF"
                    }}>
-                       Welcome back Nibba
+                       Welcome back :)
                    </Text>
 
                    <View style={{
@@ -60,12 +60,12 @@ const ExpertHome = ({navigation}) => {
                        />
                        <Image
                             source={require('../assets/images/sear.png')}
-                            style={{height:14,width:14}}
+                            style={{height:14,width:14, marginLeft:100}}
                        />
                    </View>
                    <View style={{
                        flexDirection:"row",
-                       backgroundColor:"#FFF2F2",
+                       backgroundColor:COLORS.lightBlue,
                        marginTop:15,
                        marginHorizontal:20,
                        borderRadius:20,
@@ -106,7 +106,7 @@ const ExpertHome = ({navigation}) => {
                        </View>
                        <Image
                             source={require('../assets/images/undraw.png')}
-                            style={{marginLeft:-80,marginTop:35}}
+                            style={{marginLeft: -SIZES.padding*3.5,marginTop: -SIZES.padding*1.5, width:200,height:200}}
                        />
 
                    </View>
@@ -120,17 +120,23 @@ const ExpertHome = ({navigation}) => {
 
                    <CourseList
                         img={require('../assets/images/xd.png')}
-                        title="Adobe XD Prototyping"
+                        title="Making agriculture aspirational"
+                        desc ='sustainable for small and marginal farmers in Central Indian Tribal Region'
+                        time="2 hours ago"
                         bg="#fdddf3"
                    />
                     <CourseList
                         img={require('../assets/images/sketch.png')}
-                        title="Sketch shortcuts and tricks"
+                        title="Agriculture and Food Engineering"
+                        desc ='sustainable for small and marginal farmers in Central Indian Tribal Region'
+                        time="1 day ago"                        
                         bg="#fef8e3"
                    />
                     <CourseList
                         img={require('../assets/images/ae.png')}
-                        title="UI Motion Design in After Effects"
+                        title="Climate Change and Agriculture"
+                        desc ="Climate change is one of the biggest challenges facing the world today."
+                        time="15 hours ago"
                         bg="#fcf2ff"
                    />
                </ScrollView>

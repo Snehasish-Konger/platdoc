@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 
 import { icons, images, COLORS, SIZES, FONTS } from "../constants";
+import { SpeakerWaveIcon } from "react-native-heroicons/outline";
 
 const RequirementBar = ({ icon, barPercentage }) => {
   return (
@@ -131,22 +132,18 @@ const PlantDetail = ({ navigation }) => {
           </View>
           <TouchableOpacity
             style={{
-              flex: 1,
-              alignItems: "flex-end",
+              width: 40,
+              height: 40,
+              alignItems: "center",
               justifyContent: "center",
+              borderRadius: 20,
+              backgroundColor: "rgba(255,255,255,0.5)",
             }}
             onPress={() => {
               console.log("Focus on pressed");
             }}
           >
-            <Image
-              source={icons.focus}
-              resizeMode="contain"
-              style={{
-                width: 25,
-                height: 25,
-              }}
-            />
+            <SpeakerWaveIcon size="30" color={COLORS.red}/>
           </TouchableOpacity>
         </View>
 
@@ -191,7 +188,7 @@ const PlantDetail = ({ navigation }) => {
           justifyContent: "space-around",
         }}
       >
-        <RequirementDetail icon={icons.sun} label="Sunlight" detail= "5 Hours" />
+        <RequirementDetail icon={icons.sun} label="Sunlight" detail="5 Hours" />
         <RequirementDetail
           icon={icons.drop}
           label="Water"
@@ -260,7 +257,7 @@ const PlantDetail = ({ navigation }) => {
           }}
         >
           <Text style={{ flex: 1, color: COLORS.secondary, ...FONTS.h3 }}>
-            Almost 2 weeks of growing time
+            Download the Report in PDF
           </Text>
           <Image
             source={icons.downArrow}
@@ -302,29 +299,29 @@ const PlantDetail = ({ navigation }) => {
           paddingVertical: SIZES.padding,
         }}
       >
+          <Text
+            style={{
+              paddingHorizontal: SIZES.padding,
+              color: COLORS.secondary,
+              ...FONTS.h1,
+            }}
+          >
+            About
+          </Text>
         <Text
           style={{
             paddingHorizontal: SIZES.padding,
+            marginTop: SIZES.base,
+            marginBottom: SIZES.padding,
             color: COLORS.secondary,
-            ...FONTS.h1,
+            ...FONTS.body3,
+            fontWeight: 600,
+            fontSize: 18,
           }}
         >
-            About
+          A fungal disease that appears as a white, powdery substance on plant
+          leaves, stems, and fruit.
         </Text>
-        <Text
-              style={{
-                paddingHorizontal: SIZES.padding,
-                marginTop: SIZES.base,
-                marginBottom: SIZES.padding,
-                color: COLORS.secondary,
-                ...FONTS.body3,
-                fontWeight: 600,
-                fontSize: 18,
-              }}
-            >
-              A fungal disease that appears as a white, powdery substance on
-              plant leaves, stems, and fruit.
-            </Text>
         <Text
           style={{
             paddingHorizontal: SIZES.padding,

@@ -30,8 +30,12 @@ const Settings = ({ navigation }) => {
     navigation.navigate("Profile");
   };
 
-  const navigateToSecurity = () => {
+  const navigateToExpertProfile = () => {
     navigation.navigate("ExpertHome");
+  };
+
+  const navigateToSecurity = () => {
+    console.log("Security function");
   };
 
   const navigateToNotifications = () => {
@@ -43,7 +47,7 @@ const Settings = ({ navigation }) => {
   };
 
   const navigateToSubscription = () => {
-    console.log("Subscription function");
+    navigation.navigate("Payment");
   };
 
   const navigateToSupport = () => {
@@ -72,6 +76,7 @@ const Settings = ({ navigation }) => {
       text: "Edit Profile",
       action: navigateToEditProfile,
     },
+    { icon: "person-outline", text: "Expert Profile", action: navigateToExpertProfile },
     { icon: "security", text: "Security", action: navigateToSecurity },
     {
       icon: "notifications-none",

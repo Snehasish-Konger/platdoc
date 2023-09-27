@@ -53,11 +53,11 @@ const Profile = ({ navigation }) => {
         backgroundColor: COLORS.primary,
       }}
       style={{
-        backgroundColor: COLORS.white,
+        backgroundColor: COLORS.lightGreen,
         height: 44,
       }}
       renderLabel={({ focused, route }) => (
-        <Text style={[{ color: focused ? COLORS.black : COLORS.gray }]}>
+        <Text style={[{ color: focused ? COLORS.black : COLORS.secondary }]}>
           {route.title}
         </Text>
       )}
@@ -103,9 +103,32 @@ const Profile = ({ navigation }) => {
     },
   ]);
 
+  const [friendList, setFriendList] = useState([
+    {
+      id: 0,
+      img: images.profile1,
+    },
+    {
+      id: 1,
+      img: images.profile2,
+    },
+    {
+      id: 2,
+      img: images.profile3,
+    },
+    {
+      id: 3,
+      img: images.profile4,
+    },
+    {
+      id: 4,
+      img: images.profile5,
+    },
+  ]);
+
   const renderScene = SceneMap({
     first: () => (
-      <View style={{ flex: 1, backgroundColor: COLORS.white }}>
+      <View style={{ flex: 1}}>
         <FlatList
           numColumns={3}
           data={newPlants}
@@ -135,10 +158,10 @@ const Profile = ({ navigation }) => {
       </View>
     ),
     second: () => (
-      <View style={{ flex: 1, backgroundColor: COLORS.white }}>
+      <View style={{ flex: 1}}>
         <FlatList
           numColumns={3}
-          data={images.profile}
+          data={friendList}
           keyExtractor={(item) => `${item.id}`}
           renderItem={({ item }) => (
             <View
@@ -147,10 +170,11 @@ const Profile = ({ navigation }) => {
                 height: 120,
                 alignItems: "center",
                 justifyContent: "center",
+                margin: 8,
               }}
             >
               <Image
-                source={item.url}
+                source={item.img}
                 resizeMode="cover"
                 style={{
                   width: "100%",
@@ -169,7 +193,7 @@ const Profile = ({ navigation }) => {
     <View
       style={{
         flex: 1,
-        backgroundColor: COLORS.white,
+        // backgroundColor: COLORS.white,
       }}
     >
       <View style={{ width: "100%" }}>

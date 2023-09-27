@@ -251,7 +251,9 @@ const Chatbot = ({ navigation }) => {
               // AI image response
               return (
                 <View key={index} className="flex-row justify-start">
-                  <View className="p-2 rounded-2xl bg-emerald-100 rounded-tl-none">
+                  <View className="p-2 rounded-2xl rounded-tl-none"
+                  style={{ backgroundColor: COLORS.lightGreen }}
+                  >
                     <Image
                       source={{ uri: message.content }}
                       className="rounded-2xl"
@@ -266,8 +268,8 @@ const Chatbot = ({ navigation }) => {
               return (
                 <View
                   key={index}
-                  style={{ width: wp(70) }}
-                  className="bg-emerald-100 p-2 rounded-xl rounded-tl-none justify-start"
+                  style={{ width: wp(70), backgroundColor: COLORS.lightGreen }}
+                  className="p-2 rounded-xl rounded-tl-none justify-start"
                 >
                   <Text
                     className="text-neutral-800"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
@@ -17,11 +17,13 @@ import {
   ExpertHome,
   CourseList,
   Cources,
+  Payment,
 } from "./screens";
 // Tab Navigator
 import Tabs from "./navigation/tabs";
 // Font
 import { useFonts } from "expo-font";
+// import { theme } from "./constants";
 
 const theme = {
   ...DefaultTheme,
@@ -81,6 +83,11 @@ const App = () => {
           <>
             <Stack.Screen name="HomeTabs" component={Tabs} />
             <Stack.Screen
+              name="PlantDetail"
+              component={PlantDetail}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="Profile"
               component={Profile}
               options={{ headerShown: false }}
@@ -104,6 +111,11 @@ const App = () => {
             <Stack.Screen
               name="Cources"
               component={Cources}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Payment"
+              component={Payment}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -159,11 +171,6 @@ const App = () => {
             />
           </>
         )}
-        <Stack.Screen
-          name="PlantDetail"
-          component={PlantDetail}
-          options={{ headerShown: false }}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );
