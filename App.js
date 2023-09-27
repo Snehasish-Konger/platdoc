@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebaseConfig";
+import { StatusBar } from "react-native";
 import { IntroductionAnimationScreen } from "./introduction_animation";
 // screens
 import {
@@ -72,6 +73,7 @@ const App = () => {
 
   return (
     <NavigationContainer theme={theme}>
+      <StatusBar backgroundColor={'transparent'} translucent/>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
