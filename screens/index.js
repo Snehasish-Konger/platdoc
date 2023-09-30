@@ -3,15 +3,18 @@ import PlantDetail from "./PlantDetail";
 import Weather from "./Weather";
 import ChatBot from "./ChatBot";
 import Welcome from "./Welcome";
-import Signup from "./Signup";
-import Login from "./Login";
+import Signup from "./AuthPage/Signup";
+import Login from "./AuthPage/Login";
 import Profile from "./Profile";
 import Settings from "./Settings";
-import ExpertHome from "./ExpertHome";
-import CourseList from "./CourseList";
-import Cources from "./Cources";
-import Chapters from "./Chapter";
+import ExpertHome from "./ExpertPages/ExpertHome";
+import CourseList from "./ExpertPages/CourseList";
+import Cources from "./ExpertPages/Cources";
+import Chapters from "./ExpertPages/Chapter";
 import Payment from "./Payment";
+import Splash from "./Splash";
+import PlantList from "./Diagnosis/PlantList";
+import Card from "./Diagnosis/Card";
 // import IncomingCallScreen from "./VideoCall/IncomingCallScreen";
 // import CallingScreen from "./VideoCall/CallingScreen";
 
@@ -30,6 +33,9 @@ export {
     Cources,
     Chapters,
     Payment,
+    Splash,
+    PlantList,
+    Card,
     // IncomingCallScreen,
     // CallingScreen
 };

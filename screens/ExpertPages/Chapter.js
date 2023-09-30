@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import ProgressCircle from "react-native-progress-circle";
-import { FONTS } from "../constants";
+import { FONTS } from "../../constants";
 
 const Chapters = ({ navigation, title, num, duration, percent, color, onPress  }) => { 
   return (
@@ -70,7 +70,7 @@ const Chapters = ({ navigation, title, num, duration, percent, color, onPress  }
         shadowColor="#FFF"
         bgColor="#fff2f2"
       >
-        <Image source={require("../assets/images/pl.png")} />
+        <Image source={require("../../assets/images/pl.png")} />
       </ProgressCircle>
     </TouchableOpacity>
   );

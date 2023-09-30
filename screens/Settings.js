@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, StatusBar } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, FONTS } from "../constants";
@@ -140,6 +140,7 @@ const Settings = ({ navigation }) => {
         backgroundColor: COLORS.white,
       }}
     >
+      <StatusBar barStyle="dark-content" />
       <View
         style={{
           marginHorizontal: 12,

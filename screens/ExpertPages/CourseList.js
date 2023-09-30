@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import ProgressCircle from "react-native-progress-circle";
-import { SIZES, COLORS } from "../constants";
+import { SIZES, COLORS } from "../../constants";
 
 const CourseList = ({navigation, img, title, time, desc, bg, onPress }) => {
   onPress = () => {
@@ -71,7 +71,7 @@ const CourseList = ({navigation, img, title, time, desc, bg, onPress }) => {
         shadowColor="#FFF"
         bgColor="#FFF"
       >
-        <Image source={require("../assets/images/pl.png")} />
+        <Image source={require("../../assets/images/pl.png")} />
       </ProgressCircle>
     </TouchableOpacity>
   );

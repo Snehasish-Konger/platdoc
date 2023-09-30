@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Modalize } from "react-native-modalize";
 import CourseList from "./CourseList";
-import {FONTS, COLORS, SIZES} from '../constants'
+import {FONTS, COLORS, SIZES} from '../../constants'
 import { GestureHandlerRootView ,TapGestureHandler } from "react-native-gesture-handler";
 
 const Cources = ({ navigation }) => {
@@ -16,7 +16,7 @@ const Cources = ({ navigation }) => {
     <GestureHandlerRootView>
     <TapGestureHandler>
     <ImageBackground
-      source={require("../assets/images/cat.png")}
+      source={require("../../assets/images/cat.png")}
       style={{ width: "100%", height: "100%" }}
     >
       <View
@@ -38,7 +38,7 @@ const Cources = ({ navigation }) => {
           }}
         >
           <Image
-            source={require("../assets/images/a1.png")}
+            source={require("../../assets/images/a1.png")}
             style={{ width: 20, height: 15 }}
           />
         </TouchableOpacity>
@@ -54,7 +54,7 @@ const Cources = ({ navigation }) => {
         >
           <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
           <Image
-            source={require("../assets/images/hum.png")}
+            source={require("../../assets/images/hum.png")}
             style={{ height: 15, width: 20 }}
           />
           </TouchableOpacity>
@@ -89,37 +89,37 @@ const Cources = ({ navigation }) => {
         <View style={{ marginTop: 40 }}>
           <CourseList
             onPress={() => navigation.navigate("Xd")}
-            img={require("../assets/images/xd.png")}
+            img={require("../../assets/images/xd.png")}
             title="Adobe XD Prototyping"
             bg="#fdddf3"
           />
           <CourseList
-            img={require("../assets/images/sketch.png")}
+            img={require("../../assets/images/sketch.png")}
             title="Sketch shortcuts and tricks"
             bg="#fef8e3"
           />
           <CourseList
-            img={require("../assets/images/ae.png")}
+            img={require("../../assets/images/ae.png")}
             title="UI Motion Design in After Effects"
             bg="#fcf2ff"
           />
           <CourseList
-            img={require("../assets/images/f.png")}
+            img={require("../../assets/images/f.png")}
             title="Figma Essentials"
             bg="#fff0ee"
           />
           <CourseList
-            img={require("../assets/images/ps.png")}
+            img={require("../../assets/images/ps.png")}
             title="Adobe Photoshop. Retouching"
             bg="#fdddf3"
           />
           <CourseList
-            img={require("../assets/images/sketch.png")}
+            img={require("../../assets/images/sketch.png")}
             title="Sketch shortcuts and tricks"
             bg="#fef8e3"
           />
           <CourseList
-            img={require("../assets/images/ae.png")}
+            img={require("../../assets/images/ae.png")}
             title="UI Motion Design in After Effects"
             bg="#fcf2ff"
           />

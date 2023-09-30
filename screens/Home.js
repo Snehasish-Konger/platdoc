@@ -282,7 +282,7 @@ const Home = ({ navigation }) => {
 
               <TouchableOpacity
                 onPress={() => {
-                  console.log("See All on pressed");
+                  navigation.navigate("PlantList");
                 }}
               >
                 <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>

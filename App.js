@@ -5,6 +5,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebaseConfig";
 import { StatusBar } from "react-native";
+
 import { IntroductionAnimationScreen } from "./introduction_animation";
 // screens
 import {
@@ -19,6 +20,9 @@ import {
   CourseList,
   Cources,
   Payment,
+  Splash,
+  PlantList,
+  Card,
 } from "./screens";
 // Tab Navigator
 import Tabs from "./navigation/tabs";
@@ -35,8 +39,12 @@ const theme = {
 };
 
 const Stack = createNativeStackNavigator();
+
+
+// App
 const App = () => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
@@ -48,6 +56,9 @@ const App = () => {
       }
     });
 
+    // setTimeout(() => {
+    //   setIsLoading(false); // Set isLoading to false after a delay
+    // }, 9000);
     // Unsubscribe from the listener when the component unmounts
     return () => {
       unsubscribe();
@@ -67,13 +78,13 @@ const App = () => {
     "WorkSans-SemiBold": require("./assets/fonts/WorkSans-SemiBold.ttf"),
   });
 
-  if (!loaded) {
-    return null;
+  if (!loaded || isLoading) {
+    return <Splash setIsLoading={setIsLoading} />;
   }
 
   return (
     <NavigationContainer theme={theme}>
-      <StatusBar backgroundColor={'transparent'} translucent/>
+      <StatusBar backgroundColor={"transparent"} translucent />
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
@@ -104,6 +115,7 @@ const App = () => {
               component={ExpertHome}
               options={{ headerShown: false }}
             />
+
             <Stack.Screen
               name="CourseList"
               component={CourseList}
@@ -124,6 +136,16 @@ const App = () => {
               name="IntroductionAnimationScreen"
               component={IntroductionAnimationScreen}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name= "PlantList"
+              component={PlantList}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+            name="Card"
+            component={Card}
+            options={{ headerShown: false }}
             />
             <Stack.Screen
               name="Settings"

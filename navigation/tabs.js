@@ -63,8 +63,6 @@ const Tabs = ({ navigation, image }) => {
           alignSelf: "center",
           display: "flex",
           justifyContent: "center",
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
         },
         tabBarIcon: ({ focused }) => {
           const tintColor = focused ? COLORS.primary : COLORS.black;

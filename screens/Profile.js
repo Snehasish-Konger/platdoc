@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   FlatList,
+  StatusBar,
 } from "react-native";
 // import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, FONTS, SIZES, images } from "../constants";
-// import { StatusBar } from "expo-status-bar";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SceneMap, TabBar, TabView } from "react-native-tab-view";
 import { auth, firestore } from "../config/firebaseConfig";
@@ -196,6 +196,7 @@ const Profile = ({ navigation }) => {
         // backgroundColor: COLORS.white,
       }}
     >
+      <StatusBar barStyle="dark-content" />
       <View style={{ width: "100%" }}>
         <Image
           source={images.cover}

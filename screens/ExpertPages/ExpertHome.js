@@ -1,12 +1,12 @@
 import React from 'react'
 import {View,Text,ImageBackground,TouchableOpacity,Image, ScrollView, TextInput} from 'react-native'
-import CourseList from '../screens/CourseList'
-import {FONTS, COLORS, SIZES} from '../constants'
+import CourseList from './CourseList'
+import {FONTS, COLORS, SIZES} from '../../constants'
 
 const ExpertHome = ({navigation}) => {
         return(
            <ImageBackground
-            source={require('../assets/images/Home.png')}
+            source={require('../../assets/images/Home.png')}
             style={{width:"100%",height:"100%", position:"absolute"}}
            >
                <ScrollView>
@@ -25,7 +25,7 @@ const ExpertHome = ({navigation}) => {
                        }}>
                         <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
                            <Image
-                            source={require('../assets/images/hum.png')}
+                            source={require('../../assets/images/hum.png')}
                             style={{height:15,width:20}}
                            />
                         </TouchableOpacity>
@@ -59,7 +59,7 @@ const ExpertHome = ({navigation}) => {
                             }}
                        />
                        <Image
-                            source={require('../assets/images/sear.png')}
+                            source={require('../../assets/images/sear.png')}
                             style={{height:14,width:14, marginLeft:100}}
                        />
                    </View>
@@ -99,13 +99,13 @@ const ExpertHome = ({navigation}) => {
                                         fontSize:12
                                     }}>Categories</Text>  
                                     <Image
-                                        source={require('../assets/images/a3.png')}
+                                        source={require('../../assets/images/a3.png')}
                                         style={{marginLeft:20,width:8,height:8}}
                                     />
                            </TouchableOpacity>
                        </View>
                        <Image
-                            source={require('../assets/images/undraw.png')}
+                            source={require('../../assets/images/undraw.png')}
                             style={{marginLeft: -SIZES.padding*3.5,marginTop: -SIZES.padding*1.5, width:200,height:200}}
                        />
 
@@ -119,21 +119,21 @@ const ExpertHome = ({navigation}) => {
                    }}>Recent News</Text>
 
                    <CourseList
-                        img={require('../assets/images/xd.png')}
+                        img={require('../../assets/images/xd.png')}
                         title="Making agriculture aspirational"
                         desc ='sustainable for small and marginal farmers in Central Indian Tribal Region'
                         time="2 hours ago"
                         bg="#fdddf3"
                    />
                     <CourseList
-                        img={require('../assets/images/sketch.png')}
+                        img={require('../../assets/images/sketch.png')}
                         title="Agriculture and Food Engineering"
                         desc ='sustainable for small and marginal farmers in Central Indian Tribal Region'
                         time="1 day ago"                        
                         bg="#fef8e3"
                    />
                     <CourseList
-                        img={require('../assets/images/ae.png')}
+                        img={require('../../assets/images/ae.png')}
                         title="Climate Change and Agriculture"
                         desc ="Climate change is one of the biggest challenges facing the world today."
                         time="15 hours ago"

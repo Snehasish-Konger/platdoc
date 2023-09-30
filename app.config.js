@@ -10,9 +10,8 @@ export default {
     icon: "./assets/icon.png",
     userInterfaceStyle: "light",
     splash: {
-      image: "./assets/splash.png",
-      resizeMode: "contain",
-      backgroundColor: "#ffffff",
+      lottie: "./assets/splashAnim.json",
+      resizeMode: "cover"
     },
     assetBundlePatterns: ["**/*"],
     ios: {

@@ -1,4 +1,5 @@
 const AppImages = {
+    splash_bg: require('./splashAnim.json'),
     support_icon: require('./home/supportIcon.png'),
     userImage: require('./home/userImage.png'),
     feedbackImage: require('./home/feedbackImage.png'),
