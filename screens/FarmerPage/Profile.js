@@ -9,28 +9,47 @@ import {
   StatusBar,
 } from "react-native";
 // import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS, FONTS, SIZES, images } from "../constants";
+import { COLORS, FONTS, SIZES, images } from "../../constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SceneMap, TabBar, TabView } from "react-native-tab-view";
-import { auth, firestore } from "../config/firebaseConfig";
+import { auth, database } from "../../config/firebaseConfig";
+import { doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from "firebase/auth";
 
 const Profile = ({ navigation }) => {
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
-  const [user, setUser] = useState(null);
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [profileImage, setProfileImage] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Add Firebase authentication state change listener
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-
-    return () => {
-      // Clean up the listener when the component unmounts
-      unsubscribe();
+    const fetchUserDetails = async () => {
+      setLoading(true);
+      try {
+        const docRef = doc(database, 'users', auth.currentUser.uid);
+        const docSnap = await getDoc(docRef);
+  
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          setName(userData.name || '');
+          setAddress(userData.address || '');
+          setPhone(userData.phone || '');
+          setProfileImage(userData.profileImageUrl || null); // Assuming the field is named 'profileImageUrl'
+        } else {
+          console.log("No user document found!");
+        }
+      } catch (error) {
+        console.log('Error fetching user details:', error);
+      }
+      setLoading(false);
     };
+  
+    fetchUserDetails();
   }, []);
+  
 
   // Function to sign out the user
   const signOut = async () => {
@@ -224,10 +243,10 @@ const Profile = ({ navigation }) => {
       </View>
 
       <View style={{ flex: 1, alignItems: "center" }}>
-        {user && (
-          <>
+
+          {profileImage ? (
             <Image
-              source={images.profile}
+              source={{ uri: profileImage }}
               resizeMode="contain"
               style={{
                 height: 155,
@@ -238,25 +257,38 @@ const Profile = ({ navigation }) => {
                 marginTop: -90,
               }}
             />
-            <Text
+          ) : (
+            // Fallback image if no profile image is available
+            <Image
+              source={images.profile} // Default or placeholder image
+              resizeMode="contain"
               style={{
-                ...FONTS.h2,
-                color: COLORS.primary,
-                marginVertical: 8,
+                height: 155,
+                width: 155,
+                borderRadius: 999,
+                borderColor: COLORS.primary,
+                borderWidth: 2,
+                marginTop: -90,
               }}
-            >
-              Welcome {user.displayName}
-            </Text>
-            <Text
-              style={{
-                color: COLORS.black,
-                ...FONTS.body4,
-              }}
-            >
-              {user.email}
-            </Text>
-          </>
-        )}
+            />
+          )}
+          <Text
+            style={{
+              ...FONTS.h2,
+              color: COLORS.primary,
+              marginVertical: 8,
+            }}
+          >
+            Welcome {name}
+          </Text>
+          <Text
+            style={{
+              color: COLORS.black,
+              ...FONTS.body4,
+            }}
+          >
+            Phone Number: {phone? phone : "No phone number available"}
+          </Text>
 
         <View
           style={{
@@ -272,8 +304,7 @@ const Profile = ({ navigation }) => {
               marginLeft: 4,
             }}
           >
-            Newtown, Kolkata, West Bengal, India
-            {/* {user.address} */}
+            {address? address : "No address available"}
           </Text>
         </View>
 
@@ -370,6 +401,7 @@ const Profile = ({ navigation }) => {
               borderRadius: 10,
               marginHorizontal: SIZES.padding * 2,
             }}
+            onPress={() => navigation.navigate("EditProfile")}
           >
             <Text
               style={{

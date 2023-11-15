@@ -6,10 +6,26 @@ import { COLORS } from "../../constants";
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, database } from "../../config/firebaseConfig";
 
-const Login = ({ navigation })=> {
+const Login = ({ navigation})=> {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+const handdleLogin = async () => {
+    console.log("login");
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      const user = userCredential.user;
+      console.log("login success");
+    } catch (error) {
+      setError(error.message);
+      alert(error.message);
+    }
+  };
 
   const handleGoogleSignUp = async () => {
     console.log("google sign up");
@@ -74,12 +90,12 @@ const Login = ({ navigation })=> {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <TouchableOpacity className="flex items-end">
+          <TouchableOpacity className="flex items-end" onPress={() => navigation.navigate("ForgetPass")}>
             <Text className="text-gray-700 mb-5">Forgot Password?</Text>
           </TouchableOpacity>
           <TouchableOpacity
             className="py-3 bg-yellow-400 rounded-xl"
-            onPress={() => signInWithEmailAndPassword(auth, email, password)}
+            onPress={() => handdleLogin()}
           >
             <Text className="text-xl font-bold text-center text-gray-700">
               Login

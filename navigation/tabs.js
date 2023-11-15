@@ -15,7 +15,7 @@ import {
   CreditCardIcon,
 } from "react-native-heroicons/outline";
 import { COLORS } from "../constants";
-import Payment from "../screens/Payment";
+import Payment from "../screens/Payments/Payment";
 const Tab = createBottomTabNavigator();
 
 // const tabOptions = {

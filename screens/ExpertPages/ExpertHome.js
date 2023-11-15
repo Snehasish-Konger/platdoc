@@ -23,7 +23,7 @@ const ExpertHome = ({navigation}) => {
                            marginTop:30,
                            backgroundColor: COLORS.lightBlue
                        }}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+                        <TouchableOpacity onPress={() => navigation.navigate("ExpertSetting")}>
                            <Image
                             source={require('../../assets/images/hum.png')}
                             style={{height:15,width:20}}

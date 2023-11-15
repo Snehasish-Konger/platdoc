@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { COLORS, FONTS } from "../../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  sendEmailVerification,
 } from "firebase/auth";
 import { auth, database } from "../../config/firebaseConfig";
 import {
@@ -17,14 +18,16 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { back } from "../../constants/icons";
+import { EllipsisVerticalIcon } from "react-native-heroicons/outline";
 
 // subscribe for more videos like this :)
 const Signup = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [userType, setUserType] = useState("");
   const [error, setError] = useState("");
-  
 
   const handleSignUp = async () => {
     console.log("sign up");
@@ -34,22 +37,33 @@ const Signup = ({ navigation }) => {
         email,
         password
       );
+      await sendEmailVerification(auth.currentUser); // send email verification, currently in development mode
       const user = userCredential.user;
       const userRef = doc(database, "users", user.uid);
       const docSnap = await getDoc(userRef);
+      console.log("User type:", userType);
       if (!docSnap.exists()) {
         await setDoc(userRef, {
           name: name,
           email: email,
           password: password,
           uid: user.uid,
+          userType: userType,
         });
       }
-        console.log("sign up success");
+      console.log("sign up success");
+      if(userType === "farmer"){
+        navigation.navigate("Home");
+      }else if(userType === "expert"){
+        navigation.navigate("ExpertHome");
+      }else{
+        alert("Please select user type");
+      }
     } catch (error) {
       setError(error.message);
+      alert(error.message);
     }
-    };
+  };
 
   const handleGoogleSignUp = async () => {
     console.log("google sign up");
@@ -65,6 +79,7 @@ const Signup = ({ navigation }) => {
           email: user.email,
           password: "",
           uid: user.uid,
+          userType: userType,
         });
       }
       console.log("google sign up success");
@@ -82,7 +97,7 @@ const Signup = ({ navigation }) => {
         <View className="flex-row justify-start">
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            className="bg-yellow-400 p-2 rounded-tr-2xl rounded-bl-2xl ml-4"
+            className="bg-yellow-400 p-2 rounded-2xl ml-4"
           >
             <ArrowLeftIcon size="20" color="black" />
           </TouchableOpacity>
@@ -90,7 +105,7 @@ const Signup = ({ navigation }) => {
         <View className="flex-row justify-center">
           <Image
             source={require("../../assets/images/signup.png")}
-            style={{ width: 165, height: 110 }}
+            style={{ width: 180, height: 180 }}
           />
         </View>
       </SafeAreaView>
@@ -99,36 +114,74 @@ const Signup = ({ navigation }) => {
         style={{ borderTopLeftRadius: 50, borderTopRightRadius: 50 }}
       >
         <View className="form space-y-2">
-          <Text className="text-gray-700 ml-4" style={{...FONTS.body3}}>Full Name</Text>
+          <Text className="text-gray-700 ml-4" style={{ ...FONTS.body3 }}>
+            Full Name
+          </Text>
           <TextInput
             className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"
-            style={{...FONTS.body3}}
+            style={{ ...FONTS.body3 }}
             value={name}
             placeholder="Enter Name"
             onChangeText={(text) => setName(text)}
           />
-          <Text className="text-gray-700 ml-4" style={{...FONTS.body3}}>Email Address</Text>
+          <Text className="text-gray-700 ml-4" style={{ ...FONTS.body3 }}>
+            Email Address
+          </Text>
           <TextInput
             className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"
             value={email}
-            style={{...FONTS.body3}}
+            style={{ ...FONTS.body3 }}
             placeholder="Enter Email"
             onChangeText={(text) => setEmail(text)}
           />
-          <Text className="text-gray-700 ml-4" style={{...FONTS.body3}}>Password</Text>
+          <Text className="text-gray-700 ml-4" style={{ ...FONTS.body3 }}>
+            Password
+          </Text>
           <TextInput
             className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-7"
             secureTextEntry
             value={password}
-            style={{...FONTS.body3}}
+            style={{ ...FONTS.body3 }}
             placeholder="Enter Password"
             onChangeText={(text) => setPassword(text)}
           />
+
+          <Text className="text-gray-700 ml-4" style={{ ...FONTS.body3 }}>
+            Who are you?
+          </Text>
+          <View className="flex-row justify-center space-x-12">
+            <TouchableOpacity
+              className="p-2 rounded-full"
+              onPress={() => setUserType("expert")}
+              style={{ backgroundColor: userType === "expert" ? "lightblue" : "" }}
+            >
+              <Image
+                source={require("../../assets/icons/expert.png")}
+                className="w-10 h-10"
+              />
+              <Text className="text-gray-700 text-center">Expert</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="p-2 rounded-full"
+              onPress={() => setUserType("farmer")}
+              style={{ backgroundColor: userType === "farmer" ? "lightgreen" : "" }}
+            >
+              <Image
+                source={require("../../assets/icons/farmer.png")}
+                className="w-10 h-10"
+              />
+              <Text className="text-gray-700 text-center">Farmer</Text>
+            </TouchableOpacity>
+          </View>
+          <Text className="text-red-500 text-center">{error}</Text>
           <TouchableOpacity
             className="py-3 bg-yellow-400 rounded-xl"
-            onPress = {handleSignUp}
+            onPress={handleSignUp}
           >
-            <Text className="font-xl font-bold text-center text-gray-700" style={{...FONTS.body2}}>
+            <Text
+              className="font-xl font-bold text-center text-gray-700"
+              style={{ ...FONTS.body2 }}
+            >
               Sign Up
             </Text>
           </TouchableOpacity>
@@ -137,8 +190,10 @@ const Signup = ({ navigation }) => {
           Or
         </Text>
         <View className="flex-row justify-center space-x-12">
-          <TouchableOpacity className="p-2 bg-gray-100 rounded-2xl" 
-            onPress={handleGoogleSignUp}>
+          <TouchableOpacity
+            className="p-2 bg-gray-100 rounded-2xl"
+            onPress={handleGoogleSignUp}
+          >
             <Image
               source={require("../../assets/icons/google.png")}
               className="w-10 h-10"
@@ -162,5 +217,6 @@ const Signup = ({ navigation }) => {
       </View>
     </View>
   );
-}
+};
 export default Signup;
+
