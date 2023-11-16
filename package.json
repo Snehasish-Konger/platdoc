@@ -10,7 +10,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@digieggs/rn-country-code-picker": "^1.4.4",
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^19.0.0",
     "@google-ai/generativelanguage": "^1.1.0",
