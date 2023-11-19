@@ -12,7 +12,7 @@ import {
 import { images, icons, COLORS, FONTS, SIZES } from "../constants";
 import { auth } from "../config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import { CursorArrowRaysIcon, UserCircleIcon } from "react-native-heroicons/solid";
+import { CursorArrowRaysIcon, UserCircleIcon, } from "react-native-heroicons/solid";
 const Home = ({ navigation }) => {
   const [user, setUser] = useState(null);
   useEffect(() => {

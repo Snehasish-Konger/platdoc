@@ -20,7 +20,8 @@ import EditProfile from "./FarmerPage/Editprofile";
 import ForgetPass from "./AuthPage/ForgetPass";
 // import IncomingCallScreen from "./VideoCall/IncomingCallScreen";
 // import CallingScreen from "./VideoCall/CallingScreen";
-
+import ChatList from "./Chat/ChatList";
+import Chat from "./Chat/Chat";
 export {
     Welcome,
     Home,
@@ -43,5 +44,7 @@ export {
     PlantList,
     Card,
     // IncomingCallScreen,
-    // CallingScreen
+    // CallingScreen,
+    ChatList,
+    Chat,
 };

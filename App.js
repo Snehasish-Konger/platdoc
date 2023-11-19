@@ -27,12 +27,18 @@ import {
   Splash,
   PlantList,
   Card,
+  ChatList,
+  Chat,
 } from "./screens";
 // Tab Navigator
 import Tabs from "./navigation/tabs";
 // Font
 import { useFonts } from "expo-font";
 // import { theme } from "./constants";
+// language
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
+
 
 const theme = {
   ...DefaultTheme,
@@ -51,6 +57,7 @@ const App = () => {
   const [userType, setUserType] = useState(null);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      // Language
       if (authUser) {
         // User is signed in
         setUser(authUser);
@@ -99,6 +106,7 @@ const App = () => {
   }
 
   return (
+    <I18nextProvider i18n={i18n}>
     <NavigationContainer theme={theme}>
       <StatusBar backgroundColor={"transparent"} translucent />
       <Stack.Navigator
@@ -118,6 +126,16 @@ const App = () => {
             <Stack.Screen
               name="Profile"
               component={Profile}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ChatList"
+              component={ChatList}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Chat"
+              component={Chat}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -253,6 +271,7 @@ const App = () => {
         )}
       </Stack.Navigator>
     </NavigationContainer>
+    </I18nextProvider>
   );
 };
 
