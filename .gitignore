@@ -9,7 +9,9 @@ npm-debug.*
 *.orig.*
 web-build/
 .env*
+yarn-error.log*
 *._
+._*
 Notes.txt
 # macOS
 .DS_Store
