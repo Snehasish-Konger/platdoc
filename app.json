@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.snehasish_konger.PlantDoc"
+      "package": "com.plantdoc.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"

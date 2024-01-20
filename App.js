@@ -28,7 +28,10 @@ import {
   PlantList,
   Card,
   ChatList,
+  PermissionScreen,
   Chat,
+  Home,
+  LanguageSelectionScreen,
 } from "./screens";
 // Tab Navigator
 import Tabs from "./navigation/tabs";
@@ -113,11 +116,16 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={user ? "HomeTabs" : "Welcome"}
+        initialRouteName={user ? "HomeTabs" : "LanguageSelectionScreen"}
       >
         {user && userType === "farmer" ? (
           <>
             <Stack.Screen name="HomeTabs" component={Tabs} />
+            <Stack.Screen
+             name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="PlantDetail"
               component={PlantDetail}
@@ -248,6 +256,11 @@ const App = () => {
           <>
             {/* Screens */}
             <Stack.Screen
+              name="LanguageSelectionScreen"
+              component={LanguageSelectionScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="Welcome"
               component={Welcome}
               options={{ headerShown: false }}
@@ -265,6 +278,11 @@ const App = () => {
             <Stack.Screen
               name="ForgetPass"
               component={ForgetPass}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="PermissionScreen"
+              component={PermissionScreen}
               options={{ headerShown: false }}
             />
           </>

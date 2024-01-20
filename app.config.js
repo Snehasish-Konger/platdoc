@@ -3,7 +3,8 @@ import "dotenv/config";
 export default {
   expo: {
     name: "PlantDoc",
-    description: "PlantDoc is an App-Based Solution to identify and solve disease in plants/crops",
+    description:
+      "PlantDoc is an App-Based Solution to identify and solve disease in plants/crops",
     slug: "PlantDoc",
     version: "1.0.0",
     orientation: "portrait",
@@ -11,7 +12,7 @@ export default {
     userInterfaceStyle: "light",
     splash: {
       lottie: "./assets/splashAnim.json",
-      resizeMode: "cover"
+      resizeMode: "cover",
     },
     assetBundlePatterns: ["**/*"],
     ios: {
@@ -22,7 +23,7 @@ export default {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
-      package: "com.plantdoc",
+      package: "com.plantdoc.app",
     },
     web: {
       favicon: "./assets/favicon.png",

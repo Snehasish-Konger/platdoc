@@ -2,7 +2,7 @@ import Home from "./Home";
 import PlantDetail from "./PlantDetail";
 import Weather from "./Weather";
 import ChatBot from "./ChatBot";
-import Welcome from "./Welcome";
+import Welcome from "./Welcome/Welcome";
 import Signup from "./AuthPage/Signup";
 import Login from "./AuthPage/Login";
 import Profile from "./FarmerPage/Profile";
@@ -18,6 +18,8 @@ import PlantList from "./Diagnosis/PlantList";
 import Card from "./Diagnosis/Card";
 import EditProfile from "./FarmerPage/Editprofile";
 import ForgetPass from "./AuthPage/ForgetPass";
+import LanguageSelectionScreen from "./Welcome/LanguageSelectionScreen";
+import PermissionScreen from "./Welcome/PermissionScreen";
 // import IncomingCallScreen from "./VideoCall/IncomingCallScreen";
 // import CallingScreen from "./VideoCall/CallingScreen";
 import ChatList from "./Chat/ChatList";
@@ -43,6 +45,8 @@ export {
     Splash,
     PlantList,
     Card,
+    LanguageSelectionScreen,
+    PermissionScreen,
     // IncomingCallScreen,
     // CallingScreen,
     ChatList,
