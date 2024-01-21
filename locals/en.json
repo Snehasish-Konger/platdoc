@@ -1,11 +1,34 @@
 {
-    "welcome": "Welcome",
-    "settings": "Settings",
-    "profile": "Profile",
-    "logout": "Logout",
-    "language": "Language",
-    "home": "Home",
-    "about": "About",
-    "contact": "Contact"
+  "label": "English",
+  "title": "Welcome!",
+  "subtitle": "Select your PlantDoc language",
+  "script": "Learn farming in your language",
+  "termsText": "By tapping Accept, you agree to the Terms of Service and Privacy Policy",
+  "accept": "Accept",
+  "permissions": {
+    "notifications": {
+      "name": "Notifications",
+      "description": "Allow notifications to receive important updates"
+    },
+    "location": {
+      "name": "Location",
+      "description": "Allow access to your location to get weather information"
+    },
+    "camera_storage": {
+      "name": "Camera and Storage",
+      "description": "Allow access to your camera to take pictures of your plants"
+    },
+    "skip": "Skip",
+    "allow": "Allow"
+  },
+  "welcome": {
+    "title1": "Welcome to PlantDoc!",
+    "subtitle1": "Your personal plant doctor",
+    "title2": "Take a picture of your plant",
+    "title3": "Get expert diagnosis",
+    "subtitle3": "Get a diagnosis from experts in your language",
+    "script": "Already have an account?",
+    "signup": "Sign up",
+    "login": "Log in"
   }
-  
+}

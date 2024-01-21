@@ -3,7 +3,7 @@ import "react-native-gesture-handler";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth,database } from "./config/firebaseConfig";
+import { auth, database } from "./config/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { StatusBar } from "react-native";
 
@@ -33,15 +33,11 @@ import {
   Home,
   LanguageSelectionScreen,
 } from "./screens";
-// Tab Navigator
 import Tabs from "./navigation/tabs";
-// Font
 import { useFonts } from "expo-font";
-// import { theme } from "./constants";
-// language
-import { I18nextProvider } from 'react-i18next';
-import i18n from './i18n';
-
+import { I18nextProvider } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import i18n from "./i18n";
 
 const theme = {
   ...DefaultTheme,
@@ -58,7 +54,20 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userType, setUserType] = useState(null);
+  console.log(i18n.language);
   useEffect(() => {
+    const getLanguage = async () => {
+      try {
+        const value = await AsyncStorage.getItem("selectedLanguage");
+        if (value !== null) {
+          i18n.changeLanguage(value);
+          console.log("Language preference retrieved " + value);
+        }
+      } catch (e) {
+        // error reading value
+      }
+    };
+
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       // Language
       if (authUser) {
@@ -88,6 +97,7 @@ const App = () => {
 
     return () => {
       unsubscribe();
+      getLanguage();
     };
   }, []);
 
@@ -110,185 +120,185 @@ const App = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-    <NavigationContainer theme={theme}>
-      <StatusBar backgroundColor={"transparent"} translucent />
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName={user ? "HomeTabs" : "LanguageSelectionScreen"}
-      >
-        {user && userType === "farmer" ? (
-          <>
-            <Stack.Screen name="HomeTabs" component={Tabs} />
-            <Stack.Screen
-             name="Home"
-              component={Home}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="PlantDetail"
-              component={PlantDetail}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Profile"
-              component={Profile}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ChatList"
-              component={ChatList}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Chat"
-              component={Chat}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="EditProfile"
-              component={EditProfile}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ChatBot"
-              component={ChatBot}
-              options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-              name="Payment"
-              component={Payment}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="IntroductionAnimationScreen"
-              component={IntroductionAnimationScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="PlantList"
-              component={PlantList}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Card"
-              component={Card}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Settings"
-              options={{
-                headerShown: false,
-                cardStyleInterpolator: ({ current, next, layouts }) => {
-                  return {
-                    cardStyle: {
-                      transform: [
-                        {
-                          translateX: current.progress.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [layouts.screen.width, 0],
-                          }),
-                        },
-                      ],
-                    },
-                    overlayStyle: {
-                      opacity: current.progress.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, 0.5],
-                      }),
-                    },
-                  };
-                },
-              }}
-              component={Settings}
-            />
-          </>
-        ) : user && userType === "expert" ? (
-          <>
-            <Stack.Screen
-              name="ExpertHome"
-              component={ExpertHome}
-              options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-              name="CourseList"
-              component={CourseList}
-              options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-              name="Cources"
-              component={Cources}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ExpertSetting"
-              component={ExpertSetting}
-              options={{
-                headerShown: false,
-                cardStyleInterpolator: ({ current, next, layouts }) => {
-                  return {
-                    cardStyle: {
-                      transform: [
-                        {
-                          translateX: current.progress.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [layouts.screen.width, 0],
-                          }),
-                        },
-                      ],
-                    },
-                    overlayStyle: {
-                      opacity: current.progress.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [0, 0.5],
-                      }),
-                    },
-                  };
-                },
-              }}
+      <NavigationContainer theme={theme}>
+        <StatusBar backgroundColor={"transparent"} translucent />
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName={user ? "HomeTabs" : "LanguageSelectionScreen"}
+        >
+          {user && userType === "farmer" ? (
+            <>
+              <Stack.Screen name="HomeTabs" component={Tabs} />
+              <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ headerShown: false }}
               />
-          </>
-        ) : (
-          <>
-            {/* Screens */}
-            <Stack.Screen
-              name="LanguageSelectionScreen"
-              component={LanguageSelectionScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Welcome"
-              component={Welcome}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Signup"
-              component={Signup}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Login"
-              component={Login}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ForgetPass"
-              component={ForgetPass}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="PermissionScreen"
-              component={PermissionScreen}
-              options={{ headerShown: false }}
-            />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+              <Stack.Screen
+                name="PlantDetail"
+                component={PlantDetail}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Profile"
+                component={Profile}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ChatList"
+                component={ChatList}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Chat"
+                component={Chat}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="EditProfile"
+                component={EditProfile}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ChatBot"
+                component={ChatBot}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="Payment"
+                component={Payment}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="IntroductionAnimationScreen"
+                component={IntroductionAnimationScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="PlantList"
+                component={PlantList}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Card"
+                component={Card}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Settings"
+                options={{
+                  headerShown: false,
+                  cardStyleInterpolator: ({ current, next, layouts }) => {
+                    return {
+                      cardStyle: {
+                        transform: [
+                          {
+                            translateX: current.progress.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [layouts.screen.width, 0],
+                            }),
+                          },
+                        ],
+                      },
+                      overlayStyle: {
+                        opacity: current.progress.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, 0.5],
+                        }),
+                      },
+                    };
+                  },
+                }}
+                component={Settings}
+              />
+            </>
+          ) : user && userType === "expert" ? (
+            <>
+              <Stack.Screen
+                name="ExpertHome"
+                component={ExpertHome}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="CourseList"
+                component={CourseList}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="Cources"
+                component={Cources}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ExpertSetting"
+                component={ExpertSetting}
+                options={{
+                  headerShown: false,
+                  cardStyleInterpolator: ({ current, next, layouts }) => {
+                    return {
+                      cardStyle: {
+                        transform: [
+                          {
+                            translateX: current.progress.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [layouts.screen.width, 0],
+                            }),
+                          },
+                        ],
+                      },
+                      overlayStyle: {
+                        opacity: current.progress.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [0, 0.5],
+                        }),
+                      },
+                    };
+                  },
+                }}
+              />
+            </>
+          ) : (
+            <>
+              {/* Screens */}
+              <Stack.Screen
+                name="LanguageSelectionScreen"
+                component={LanguageSelectionScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Welcome"
+                component={Welcome}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Signup"
+                component={Signup}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ForgetPass"
+                component={ForgetPass}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="PermissionScreen"
+                component={PermissionScreen}
+                options={{ headerShown: false }}
+              />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
     </I18nextProvider>
   );
 };

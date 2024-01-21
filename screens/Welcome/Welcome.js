@@ -10,11 +10,13 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, FONTS } from "../../constants";
+import { useTranslation } from "react-i18next";
 
 const { width } = Dimensions.get("window");
 
 const Welcome = ({ navigation }) => {
   const [currentPage, setCurrentPage] = useState(0);
+  const { t } = useTranslation();
 
   const handleScroll = (event) => {
     const { x } = event.nativeEvent.contentOffset;
@@ -30,12 +32,12 @@ const Welcome = ({ navigation }) => {
       style={{ backgroundColor: COLORS.lightGreen }}
     >
       <View className="flex-1 flex justify-around my-4">
-        <Text
+        {/* <Text
           className="text-black text-4xl text-center my-4"
           style={{ ...FONTS.body1 }}
         >
           Let's Get Started!
-        </Text>
+        </Text> */}
         <View className="justify-center items-center mt-4 mb-8 flex-1">
           <ScrollView
             horizontal
@@ -58,13 +60,13 @@ const Welcome = ({ navigation }) => {
                 className="text-black text-4xl text-center"
                 style={{ ...FONTS.body1 }}
               >
-                Welcome to PlantDoc
+              {t("welcome.title1")}
               </Text>
               <Text
                 className="text-black text-center"
                 style={{ ...FONTS.body3 }}
               >
-                Your personal plant doctor
+               {t("welcome.subtitle1")}
               </Text>
             </View>
             <View style={{ width, justifyContent: "center", alignItems: "center" }}>
@@ -75,7 +77,7 @@ const Welcome = ({ navigation }) => {
                 className="text-black text-center"
                 style={{ ...FONTS.body1 }}
               >
-                Take a picture of your plant
+                {t("welcome.title2")}
               </Text>
             </View>
             <View  style={{ width, justifyContent: "center", alignItems: "center" }}>
@@ -86,10 +88,10 @@ const Welcome = ({ navigation }) => {
                 className="text-black text-center"
                 style={{ ...FONTS.body1 }}
               >
-                Get a diagnosis
+                {t("welcome.title3")}
               </Text>
               <Text className="text-black text-center" style={{ ...FONTS.body3 }}>
-                Get a diagnosis and treatment plan
+              {t("welcome.subtitle3")}
               </Text>
             </View>
           </ScrollView>
@@ -121,7 +123,7 @@ const Welcome = ({ navigation }) => {
               style={{ ...FONTS.body2 }}
               className="text-xl text-center text-gray-700"
             >
-              Sign Up
+              {t("welcome.signup")}
             </Text>
           </TouchableOpacity>
           <View className="flex-row justify-center">
@@ -129,10 +131,10 @@ const Welcome = ({ navigation }) => {
               className="text-black font-semibold"
               style={{ ...FONTS.body4 }}
             >
-              Already have an account?
+              {t("welcome.script")}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text className="font-semibold text-blue-500"> Log In</Text>
+              <Text className="font-semibold text-blue-500">{t("welcome.login")}</Text>
             </TouchableOpacity>
           </View>
         </View>

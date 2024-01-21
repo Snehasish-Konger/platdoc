@@ -13,16 +13,11 @@ import { COLORS, FONTS } from "../constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { auth } from "../config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import { useTranslation } from "react-i18next";
 import { Picker } from "@react-native-picker/picker";
 
 const Settings = ({ navigation }) => {
   const [user, setUser] = useState(null);
-  const [languageModalVisible, setLanguageModalVisible] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("en");
-  const { i18n } = useTranslation();
   useEffect(() => {
-    i18n.changeLanguage(selectedLanguage);
     // Set up a listener for the authentication state
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
@@ -39,8 +34,6 @@ const Settings = ({ navigation }) => {
       unsubscribe();
     };
   }, [
-    i18n,
-    selectedLanguage,
   ]);
 
   const navigateToEditProfile = () => {
@@ -73,9 +66,6 @@ const Settings = ({ navigation }) => {
 
   const navigateToReportProblem = () => {
     console.log("Report a problem");
-  };
-  const navigateToLanguage = () => {
-    setLanguageModalVisible(true);
   };
 
   const logout = async () => {
@@ -116,11 +106,6 @@ const Settings = ({ navigation }) => {
   ];
 
   const actionsItems = [
-    {
-      icon: "language",
-      text: "Change the Language",
-      action: navigateToLanguage,
-    },
     {
       icon: "outlined-flag",
       text: "Report a problem",
@@ -233,39 +218,6 @@ const Settings = ({ navigation }) => {
             ))}
           </View>
         </View>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={languageModalVisible}
-          onRequestClose={() => {
-            setLanguageModalVisible(!languageModalVisible);
-          }}
-        >
-          <View className="flex-1 justify-end">
-            <View className="m-5 bg-white rounded-lg p-8 items-center shadow-lg">
-              <TouchableOpacity
-                onPress={() => setLanguageModalVisible(!languageModalVisible)}
-                className="absolute top-5 right-5"
-              >
-                <MaterialIcons name="close" size={30} color="black" />
-              </TouchableOpacity>
-              <Text className="mb-4 text-center text-lg">Select Language</Text>
-
-              <Picker
-                selectedValue={selectedLanguage}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedLanguage(itemValue)
-                }
-                className="w-full"
-              >
-                <Picker.Item label="English" value="en" />
-                <Picker.Item label="हिन्दी" value="hi" />
-                <Picker.Item label="বাংলা" value="bn" />
-                {/* Add more languages here */}
-              </Picker>
-            </View>
-          </View>
-        </Modal>
       </ScrollView>
     </SafeAreaView>
   );
