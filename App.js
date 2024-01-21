@@ -74,7 +74,6 @@ const App = () => {
         // User is signed in
         setUser(authUser);
         // Fetch userType from Firebase or local storage
-        // This is a placeholder, adjust according to your implementation
         const userTypeRef = doc(database, "users", authUser.uid);
         getDoc(userTypeRef)
           .then((docSnap) => {
@@ -121,7 +120,11 @@ const App = () => {
   return (
     <I18nextProvider i18n={i18n}>
       <NavigationContainer theme={theme}>
-        <StatusBar backgroundColor={"transparent"} translucent />
+        <StatusBar
+          backgroundColor={"transparent"}
+          translucent
+          barStyle="dark-content"
+        />
         <Stack.Navigator
           screenOptions={{
             headerShown: false,

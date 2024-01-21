@@ -13,10 +13,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 // import { COLORS, FONTS } from "../../constants";
 import { auth, database } from "../../config/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
 import languageData from "../../locals"; // Adjust the path according to your folder structure
 
 const LanguageSelectionScreen = ({ navigation }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+  const { t } = useTranslation();
 
   const handleLanguageSelect = async (langCode) => {
     try {
@@ -86,6 +88,10 @@ const LanguageSelectionScreen = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         <Text style={styles.termsText}>{currentLanguageData.termsText}</Text>
+        <Text style={styles.termsText}>{t("welcome.script")}</Text>
+        <Text style={styles.termsText}
+          onPress={() => navigation.navigate("Login")}
+        >{t('welcome.login')}</Text>
       </View>
     </SafeAreaView>
   );

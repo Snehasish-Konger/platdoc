@@ -57,13 +57,13 @@ const Welcome = ({ navigation }) => {
                 style={{ width: 350, height: 350 }}
               />
               <Text
-                className="text-black text-4xl text-center"
+                className="text-black text-4xl text-center pt-5"
                 style={{ ...FONTS.body1 }}
               >
               {t("welcome.title1")}
               </Text>
               <Text
-                className="text-black text-center"
+                className="text-black text-center pt-5"
                 style={{ ...FONTS.body3 }}
               >
                {t("welcome.subtitle1")}
@@ -74,7 +74,7 @@ const Welcome = ({ navigation }) => {
               style={{ width: 350, height: 350 }}
               />
               <Text
-                className="text-black text-center"
+                className="text-black text-center pt-5"
                 style={{ ...FONTS.body1 }}
               >
                 {t("welcome.title2")}
@@ -85,12 +85,12 @@ const Welcome = ({ navigation }) => {
               style={{ width: 350, height: 350 }}
                />
               <Text
-                className="text-black text-center"
+                className="text-black text-center pt-5"
                 style={{ ...FONTS.body1 }}
               >
                 {t("welcome.title3")}
               </Text>
-              <Text className="text-black text-center" style={{ ...FONTS.body3 }}>
+              <Text className="text-black text-center pt-5" style={{ ...FONTS.body3 }}>
               {t("welcome.subtitle3")}
               </Text>
             </View>

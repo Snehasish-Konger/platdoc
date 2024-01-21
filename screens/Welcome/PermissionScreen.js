@@ -102,15 +102,17 @@ const PermissionScreen = ({ navigation }) => {
           >
             <Image
               source={permission.image}
-              style={{ width: 350, height: 350 }}
+              style={{ width: 450, height: 450 }}
             />
-            <Text style={{ ...FONTS.h1 }}>{permission.name}</Text>
+            <Text style={{ ...FONTS.h1 }} className="text-black text-4xl text-center pt-5">
+            {permission.name}</Text>
             <Text
               style={{
                 ...FONTS.body3,
                 marginHorizontal: 20,
                 textAlign: "center",
               }}
+              className="text-black text-center pt-5"
             >
               {permission.description}
             </Text>

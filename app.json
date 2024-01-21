@@ -4,6 +4,7 @@
     "description": "PlantDoc is an App-Based Solution to identify and solve disease in plants/crops",
     "slug": "PlantDoc",
     "version": "1.0.0",
+    "plugins": ["@react-native-google-signin/google-signin"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -29,5 +30,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     }
-  }
+  },
+  "scheme": "PlantDoc"
 }
