@@ -10,6 +10,7 @@ export default {
     orientation: "portrait",
     icon: "./assets/icon.png",
     userInterfaceStyle: "light",
+    schema: "PlantDoc",
     splash: {
       lottie: "./assets/splashAnim.json",
       resizeMode: "cover",
@@ -38,7 +39,7 @@ export default {
       palmURL: process.env.PALM_URL,
       palmKey: process.env.PALM_KEY,
       weatherKey: process.env.WEATHER_KEY,
-      WEB_Client_Id: process.env.GOOGLE_WEB_CLIENT_ID,
+      WEB_CLIENT_ID: process.env.GOOGLE_WEB_CLIENT_ID,
       ANDROID_CLIENT_ID: process.env.ANDROID_CLIENT_ID,
       eas: {
         projectId: "76884007-6226-46d0-9cca-99e3e5df181a",

@@ -67,9 +67,8 @@ const App = () => {
         // error reading value
       }
     };
-
+    getLanguage();
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
-      // Language
       if (authUser) {
         // User is signed in
         setUser(authUser);
@@ -96,7 +95,6 @@ const App = () => {
 
     return () => {
       unsubscribe();
-      getLanguage();
     };
   }, []);
 
