@@ -6,11 +6,11 @@ export default {
     description:
       "PlantDoc is an App-Based Solution to identify and solve disease in plants/crops",
     slug: "PlantDoc",
-    version: "1.0.0",
+    version: "0.0.1",
     orientation: "portrait",
-    icon: "./assets/icon.png",
+    icon: "./assets/adaptive-icon.png",
     userInterfaceStyle: "light",
-    schema: "PlantDoc",
+    scheme: "PlantDoc",
     splash: {
       lottie: "./assets/splashAnim.json",
       resizeMode: "cover",
@@ -39,7 +39,7 @@ export default {
       palmURL: process.env.PALM_URL,
       palmKey: process.env.PALM_KEY,
       weatherKey: process.env.WEATHER_KEY,
-      WEB_CLIENT_ID: process.env.GOOGLE_WEB_CLIENT_ID,
+      WEB_CLIENT_ID: process.env.WEB_CLIENT_ID,
       ANDROID_CLIENT_ID: process.env.ANDROID_CLIENT_ID,
       eas: {
         projectId: "76884007-6226-46d0-9cca-99e3e5df181a",

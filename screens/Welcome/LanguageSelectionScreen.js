@@ -10,11 +10,12 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import i18n from "../../i18n";
 import { SafeAreaView } from "react-native-safe-area-context";
-// import { COLORS, FONTS } from "../../constants";
+import { COLORS, FONTS } from "../../constants";
 import { auth, database } from "../../config/firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 import languageData from "../../locals"; // Adjust the path according to your folder structure
+import { UserCircleIcon } from "react-native-heroicons/outline";
 
 const LanguageSelectionScreen = ({ navigation }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
@@ -44,6 +45,12 @@ const LanguageSelectionScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+
+        <TouchableOpacity onPress={() => navigation.navigate("Login")} className="flex flex-row justify-end items-center">
+        <UserCircleIcon style={{width:40,height:40,marginRight:10, color:"black"}}/>
+        <Text className="text-right mr-8 text-blue-500" style={{...FONTS.body3}}
+        >{t('welcome.login')}</Text>
+        </TouchableOpacity>
       <View
         style={{
           flexDirection: "row",
@@ -88,10 +95,6 @@ const LanguageSelectionScreen = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         <Text style={styles.termsText}>{currentLanguageData.termsText}</Text>
-        <Text style={styles.termsText}>{t("welcome.script")}</Text>
-        <Text style={styles.termsText}
-          onPress={() => navigation.navigate("Login")}
-        >{t('welcome.login')}</Text>
       </View>
     </SafeAreaView>
   );
@@ -168,7 +171,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   termsText: {
-    fontSize: 14,
+    fontSize: 16,
     color: "#555",
     textAlign: "center",
   },

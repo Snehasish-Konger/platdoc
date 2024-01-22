@@ -30,5 +30,15 @@
     "script": "Already have an account?",
     "signup": "Sign up",
     "login": "Log in"
+  },
+  "login": {
+    "title": "Welcome Back!",
+    "acc": "Don't have an account?",
+    "signup": "Sign up"
+    },
+    "signup": {
+    "title": "Create an Account",
+    "acc": "Already have an account?",
+    "login": "Log in"
   }
 }

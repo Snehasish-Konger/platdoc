@@ -14,6 +14,15 @@ const firebaseConfig = {
   messagingSenderId: Constants.expoConfig.extra.messagingSenderId,
   appId: Constants.expoConfig.extra.appId,
 };
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDvw9O1spGoOpOxeg4hDpFz3mduDTv-rXM",
+//   authDomain: "plantdoc-7a537.firebaseapp.com",
+//   projectId: "plantdoc-7a537",
+//   storageBucket: "plantdoc-7a537.appspot.com",
+//   messagingSenderId: "273717150272",
+//   appId: "1:273717150272:web:caaf585668ba8ae65215a5",
+//   measurementId: "G-14Y3KC8YK5"
+// };
 
 initializeApp(firebaseConfig);
 export const auth = initializeAuth( initializeApp(firebaseConfig),

@@ -1,58 +1,79 @@
 import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
-import { COLORS } from "../../constants";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { COLORS, FONTS } from "../../constants";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 import { auth, database } from "../../config/firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from "@react-native-google-signin/google-signin";
+import Constants from "expo-constants";
 
 const Login = ({ navigation})=> {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-const handdleLogin = async () => {
-    console.log("login");
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
-      const user = userCredential.user;
-      console.log("login success");
-    } catch (error) {
-      setError(error.message);
-      alert(error.message);
-    }
-  };
 
-  const handleGoogleSignUp = async () => {
-    console.log("google sign up");
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: Constants.expoConfig.extra.WEB_CLIENT_ID,
+      androidClientId: Constants.expoConfig.extra.ANDROID_CLIENT_ID,
+    });
+  }, []);
+
+  const handleGoogleLogin = async () => {
+    console.log("Google login");
     try {
-      const provider = new GoogleAuthProvider();
-      const userCredential = await auth.signInWithPopup(auth, provider);
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      const credential = GoogleAuthProvider.credential(
+        userInfo.idToken,
+        userInfo.accessToken
+      );
+      const userCredential = await signInWithCredential(auth, credential);
       const user = userCredential.user;
       const userRef = doc(database, "users", user.uid);
       const docSnap = await getDoc(userRef);
+  
       if (!docSnap.exists()) {
-        await setDoc(userRef, {
-          name: user.displayName,
-          email: user.email,
-          password: "",
-          uid: user.uid,
-        });
+        // User not found in database, navigate to signup page
+        console.log("User not found, redirecting to signup page");
+        navigation.navigate("Signup");
+      } else {
+        // User exists, proceed with login
+        console.log("Google login success");
+        // const userType = docSnap.data().userType;
+        // if (userType === "farmer") {
+        //   navigation.navigate("Home",);
+        // } else if (userType === "expert") {
+        //   navigation.navigate("ExpertHome", { screen: "ExpertHome" });
+        // }
       }
-      console.log("google sign up success");
     } catch (error) {
-      setError(error.message);
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        setError("Sign in cancelled");
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        setError("Sign in in progress");
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        setError("Play services not available");
+      } else {
+        setError(error.message);
+        console.log(error.message);
+      }
     }
   };
+  
+  
 
   return (
     <View
       className="flex-1 bg-white"
-      style={{ backgroundColor: COLORS.primary }}
+      style={{ backgroundColor: "#FFE4CF" }}
     >
       <SafeAreaView className="flex ">
         <View className="flex-row justify-start">
@@ -63,10 +84,13 @@ const handdleLogin = async () => {
             <ArrowLeftIcon size="20" color="black" />
           </TouchableOpacity>
         </View>
-        <View className="flex-row justify-center">
+        <Text style={{ ...FONTS.h1 }} className="text-center font-bold">
+          Welcome Back!
+        </Text>
+        <View className="flex-row justify-center top-10">
           <Image
             source={require("../../assets/images/login.png")}
-            style={{ width: 200, height: 200 }}
+            style={{ width: 500, height: 490 }}
           />
         </View>
       </SafeAreaView>
@@ -74,47 +98,15 @@ const handdleLogin = async () => {
         style={{ borderTopLeftRadius: 50, borderTopRightRadius: 50 }}
         className="flex-1 bg-white px-8 pt-8"
       >
-        <View className="form space-y-2">
-          <Text className="text-gray-700 ml-4">Email Address</Text>
-          <TextInput
-            className="p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3"
-            placeholder="email"
-            value={email}
-            onChangeText={(text) => setEmail(text)}
+        <View className="flex-row justify-center">
+          <GoogleSigninButton
+            style={{ width: 250, height: 60 }}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={() => handleGoogleLogin()}
           />
-          <Text className="text-gray-700 ml-4">Password</Text>
-          <TextInput
-            className="p-4 bg-gray-100 text-gray-700 rounded-2xl"
-            secureTextEntry
-            placeholder="password"
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
-          <TouchableOpacity className="flex items-end" onPress={() => navigation.navigate("ForgetPass")}>
-            <Text className="text-gray-700 mb-5">Forgot Password?</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className="py-3 bg-yellow-400 rounded-xl"
-            onPress={() => handdleLogin()}
-          >
-            <Text className="text-xl font-bold text-center text-gray-700">
-              Login
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <Text className="text-xl text-gray-700 font-bold text-center py-5">
-          Or
-        </Text>
-        <View className="flex-row justify-center space-x-12">
-          <TouchableOpacity
-            className="p-2 bg-gray-100 rounded-2xl"
-            onPress={handleGoogleSignUp}
-          >
-            <Image
-              source={require("../../assets/icons/google.png")}
-              className="w-10 h-10"
-            />
-          </TouchableOpacity>
+          </View>
+          <View className="flex-row justify-center space-x-12">
           <TouchableOpacity className="p-2 bg-gray-100 rounded-2xl">
             <Image
               source={require("../../assets/icons/facebook.png")}
@@ -123,11 +115,11 @@ const handdleLogin = async () => {
           </TouchableOpacity>
         </View>
         <View className="flex-row justify-center mt-7">
-          <Text className="text-gray-500 font-semibold">
+          <Text style={{ ...FONTS.body3 }} className="text-gray-500 font-semibold">
             Don't have an account?
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-            <Text className="font-semibold text-yellow-500"> Sign Up</Text>
+            <Text style={{ ...FONTS.body3 }} className="text-blue-700"> Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
