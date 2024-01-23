@@ -25,6 +25,7 @@
     "title1": "Welcome to PlantDoc!",
     "subtitle1": "Your personal plant doctor",
     "title2": "Take a picture of your plant",
+    "subtitle2": "Scan your plant or upload a picture from your gallery",
     "title3": "Get expert diagnosis",
     "subtitle3": "Get a diagnosis from experts in your language",
     "script": "Already have an account?",
@@ -39,6 +40,9 @@
     "signup": {
     "title": "Create an Account",
     "acc": "Already have an account?",
-    "login": "Log in"
+    "login": "Log in",
+    "question": "What best describes you?",
+    "farmer": "Farmer",
+    "expert": "Expert"
   }
 }

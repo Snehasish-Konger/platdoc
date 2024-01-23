@@ -17,14 +17,13 @@ import {
 } from "@react-native-google-signin/google-signin";
 import Constants from "expo-constants";
 import { useTranslation } from "react-i18next";
-
-
-
+import LottieView from "lottie-react-native";
 
 const Signup = ({ navigation }) => {
   const [userType, setUserType] = useState("");
   const [error, setError] = useState("");
   const { t } = useTranslation();
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
   useEffect(() => {
     GoogleSignin.configure({
@@ -35,7 +34,7 @@ const Signup = ({ navigation }) => {
 
   const handleGoogleSignUp = async () => {
     try {
-      
+      setIsSigningUp(true);
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       const credential = GoogleAuthProvider.credential(
@@ -46,6 +45,7 @@ const Signup = ({ navigation }) => {
       const user = userCredential.user;
       const userRef = doc(database, "users", user.uid);
       const docSnap = await getDoc(userRef);
+      setIsSigningUp(false);
       if (!docSnap.exists()) {
         await setDoc(userRef, {
           name: user.displayName,
@@ -72,15 +72,12 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <View
-      className="flex-1 bg-white"
-      style={{ backgroundColor: '#BCDB8C' }}
-    >
+    <View className="flex-1" style={{ backgroundColor: "#BCDB8C" }}>
       <SafeAreaView className="flex">
         <View className="flex-row justify-start">
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            className="bg-yellow-400 p-2 rounded-2xl ml-4"
+            className="bg-green-100 p-2 rounded-2xl ml-4"
           >
             <ArrowLeftIcon size="20" color="black" />
           </TouchableOpacity>
@@ -91,80 +88,77 @@ const Signup = ({ navigation }) => {
         <View className="flex-row justify-center relative top-10">
           <Image
             source={require("../../assets/images/signup.png")}
-            style={{ width: 500, height: 490 }}
+            style={{ width: 500, height: 500 }}
           />
         </View>
       </SafeAreaView>
-      <View
-        className="flex-1 bg-white px-8 pt-10"
-        style={{ borderTopLeftRadius: 50, borderTopRightRadius: 50 }}
-      >
-        <Text className="text-gray-700 ml-4" style={{ ...FONTS.body1 }}>
-          Who are you?
+      <View className="flex-1 bg-white top-0 px-8 pt-10">
+        <Text
+          className="text-gray-700 ml-4 mb-6 justify-center"
+          style={{ ...FONTS.body1 }}
+        >
+          {t("signup.question")}
         </Text>
         <View className="flex-row justify-center space-x-12">
-          <TouchableOpacity
-            className="p-2 rounded-full"
-            onPress={() => setUserType("expert")}
-            style={{
-              backgroundColor: userType === "expert" ? "lightblue" : "",
-            }}
-          >
-            <Image
-              source={require("../../assets/icons/expert.png")}
-              className="w-10 h-10"
-            />
-            <Text className="text-gray-700 text-center">Expert</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className="p-2 rounded-full"
-            onPress={() => setUserType("farmer")}
-            style={{
-              backgroundColor: userType === "farmer" ? "lightgreen" : "",
-            }}
-          >
-            <Image
-              source={require("../../assets/icons/farmer.png")}
-              className="w-10 h-10"
-            />
-            <Text className="text-gray-700 text-center">Farmer</Text>
-          </TouchableOpacity>
+          <View className="flex flex-col items-center">
+            <TouchableOpacity
+              className="p-4 rounded-full"
+              onPress={() => setUserType("expert")}
+              style={{
+                backgroundColor:
+                  userType === "expert" ? "lightblue" : "transparent",
+              }}
+            >
+              <Image
+                source={require("../../assets/icons/expert.png")}
+                className="w-20 h-20"
+              />
+            </TouchableOpacity>
+            <Text className="text-gray-700 text-center text-base">Expert</Text>
+          </View>
+          <View className="flex flex-col items-center">
+            <TouchableOpacity
+              className="p-4 rounded-full"
+              onPress={() => setUserType("farmer")}
+              style={{
+                backgroundColor:
+                  userType === "farmer" ? "lightgreen" : "transparent",
+              }}
+            >
+              <Image
+                source={require("../../assets/icons/farmer.png")}
+                className="w-20 h-20"
+              />
+            </TouchableOpacity>
+            <Text className="text-gray-700 text-center text-base">Farmer</Text>
+          </View>
         </View>
-        <Text className="text-red-500 text-center">{error}</Text>
-        <View className="flex-row justify-center">
-          <GoogleSigninButton
-            style={{ width: 240, height: 50 }}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={handleGoogleSignUp}
-            disabled={userType === ""}
-          />
-        </View>
-        {/* <View className="flex-row justify-center mt-7">
-          <Text className="text-xl text-gray-700 font-bold text-center py-5">
-            Or
-          </Text>
-          <TouchableOpacity className="p-2 bg-gray-100 rounded-2xl">
-            <Image
-              source={require("../../assets/icons/facebook.png")}
-              className="w-10 h-10"
+        {isSigningUp ? (
+          <View className="flex-1 justify-center items-center">
+            <LottieView
+              source={require("../../assets/json/welcome.json")}
+              autoPlay
+              loop
+              style={{ width: 500, height: 500 }}
             />
-          </TouchableOpacity>
-        </View> */}
-        <View className="flex-row justify-center mt-7">
-          <Text
-            style={{ ...FONTS.body3 }}
-            className="text-gray-500 font-semibold"
-          >
-            {t("signup.acc")}{" "}
-          </Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Login")}
-            style={{ ...FONTS.body3 }}
-          >
-            <Text className="text-yellow-400 font-semibold">{t("signup.login")}</Text>
-          </TouchableOpacity>
-        </View>
+          </View>
+        ) : (
+          <View className="flex-1 justify-center items-center">
+            <GoogleSigninButton
+              style={{ width: 240, height: 50 }}
+              size={GoogleSigninButton.Size.Wide}
+              color={GoogleSigninButton.Color.Dark}
+              onPress={handleGoogleSignUp}
+              disabled={userType === ""}
+            />
+            <Text className="text-gray-500 text-lg mt-7">
+              {t("signup.acc")}{" "}
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <Text className="text-lime-600 text-lg">{t("signup.login")}</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );

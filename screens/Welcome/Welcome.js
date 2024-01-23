@@ -27,18 +27,30 @@ const Welcome = ({ navigation }) => {
     }
   };
 
+  const scripts = [
+    {
+      title: t("welcome.title1"),
+      subtitle: t("welcome.subtitle1"),
+      json: require("../../assets/json/welcome.json"),
+    },
+    {
+      title: t("welcome.title2"),
+      subtitle: t("welcome.subtitle2"),
+      json: require("../../assets/json/scanning.json"),
+    },
+    {
+      title: t("welcome.title3"),
+      subtitle: t("welcome.subtitle3"),
+      json: require("../../assets/json/diagnosis.json"),
+    },
+  ];
+
   return (
     <SafeAreaView
       className="flex-1"
       style={{ backgroundColor: COLORS.lightGreen }}
     >
       <View className="flex-1 flex justify-around my-4">
-        {/* <Text
-          className="text-black text-4xl text-center my-4"
-          style={{ ...FONTS.body1 }}
-        >
-          Let's Get Started!
-        </Text> */}
         <View className="justify-center items-center mt-4 mb-8 flex-1">
           <ScrollView
             horizontal
@@ -48,13 +60,14 @@ const Welcome = ({ navigation }) => {
             scrollEventThrottle={16}
             // style={{ flex: 1 }}
           >
-            {/* Page 1 */}
+            {scripts.map((script, index) => (
             <View
+              key={index}
               style={{ width, justifyContent: "center", alignItems: "center" }}
             >
               {/* Your content for page 1 */}
               <LottieView
-                source={require("../../assets/json/welcome.json")}
+                source={script.json}
                 autoPlay
                 loop={true}
                 style={{ width: 450, height: 450 }}
@@ -63,46 +76,16 @@ const Welcome = ({ navigation }) => {
                 className="text-black text-4xl text-center pt-5"
                 style={{ ...FONTS.body1 }}
               >
-              {t("welcome.title1")}
+              {script.title}
               </Text>
               <Text
                 className="text-black text-center pt-5"
                 style={{ ...FONTS.body3 }}
               >
-               {t("welcome.subtitle1")}
+               {script.subtitle}
               </Text>
             </View>
-            <View style={{ width, justifyContent: "center", alignItems: "center" }}>
-            <LottieView
-                source={require("../../assets/json/scanning.json")}
-                autoPlay
-                loop={true}
-                style={{ width: 450, height: 450 }}
-              />
-              <Text
-                className="text-black text-center pt-5"
-                style={{ ...FONTS.body1 }}
-              >
-                {t("welcome.title2")}
-              </Text>
-            </View>
-            <View  style={{ width, justifyContent: "center", alignItems: "center" }}>
-            <LottieView
-                source={require("../../assets/json/diagnosis.json")}
-                autoPlay
-                loop={true}
-                style={{ width: 450, height: 450 }}
-              />
-              <Text
-                className="text-black text-center pt-5"
-                style={{ ...FONTS.body1 }}
-              >
-                {t("welcome.title3")}
-              </Text>
-              <Text className="text-black text-center pt-5" style={{ ...FONTS.body3 }}>
-              {t("welcome.subtitle3")}
-              </Text>
-            </View>
+            ))}
           </ScrollView>
         </View>
         <View style={styles.pagination}>
@@ -137,13 +120,12 @@ const Welcome = ({ navigation }) => {
           </TouchableOpacity>
           <View className="flex-row justify-center">
             <Text
-              className="text-black font-semibold"
-              style={{ ...FONTS.body4 }}
+              className="text-black text-lg"
             >
-              {t("welcome.script")}
+              {t("welcome.script")} {" "}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text className="font-semibold text-blue-500">{t("welcome.login")}</Text>
+              <Text className=" text-blue-500 text-lg">{t("welcome.login")}</Text>
             </TouchableOpacity>
           </View>
         </View>
