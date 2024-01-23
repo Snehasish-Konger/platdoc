@@ -12,11 +12,13 @@ import {
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 import Constants from "expo-constants";
+import { useTranslation } from "react-i18next";
 
 const Login = ({ navigation})=> {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { t } = useTranslation();
 
 
   useEffect(() => {
@@ -85,7 +87,7 @@ const Login = ({ navigation})=> {
           </TouchableOpacity>
         </View>
         <Text style={{ ...FONTS.h1 }} className="text-center font-bold">
-          Welcome Back!
+          {t("login.title")}
         </Text>
         <View className="flex-row justify-center top-10">
           <Image
@@ -106,20 +108,22 @@ const Login = ({ navigation})=> {
             onPress={() => handleGoogleLogin()}
           />
           </View>
-          <View className="flex-row justify-center space-x-12">
+          {/* <View className="flex-row justify-center space-x-12">
           <TouchableOpacity className="p-2 bg-gray-100 rounded-2xl">
             <Image
               source={require("../../assets/icons/facebook.png")}
               className="w-10 h-10"
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View className="flex-row justify-center mt-7">
           <Text style={{ ...FONTS.body3 }} className="text-gray-500 font-semibold">
-            Don't have an account?
+            {t("login.acc")}{" "}
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-            <Text style={{ ...FONTS.body3 }} className="text-blue-700"> Sign Up</Text>
+            <Text style={{ ...FONTS.body3 }} className="text-blue-700">
+              {" "}{t("login.signup")}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, FONTS } from "../../constants";
 import { useTranslation } from "react-i18next";
+import LottieView from "lottie-react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -52,9 +53,11 @@ const Welcome = ({ navigation }) => {
               style={{ width, justifyContent: "center", alignItems: "center" }}
             >
               {/* Your content for page 1 */}
-              <Image
-                source={require("../../assets/images/welcome.png")}
-                style={{ width: 350, height: 350 }}
+              <LottieView
+                source={require("../../assets/json/welcome.json")}
+                autoPlay
+                loop={true}
+                style={{ width: 450, height: 450 }}
               />
               <Text
                 className="text-black text-4xl text-center pt-5"
@@ -70,8 +73,11 @@ const Welcome = ({ navigation }) => {
               </Text>
             </View>
             <View style={{ width, justifyContent: "center", alignItems: "center" }}>
-              <Image source={require("../../assets/images/taking_picture.png")}
-              style={{ width: 350, height: 350 }}
+            <LottieView
+                source={require("../../assets/json/scanning.json")}
+                autoPlay
+                loop={true}
+                style={{ width: 450, height: 450 }}
               />
               <Text
                 className="text-black text-center pt-5"
@@ -81,9 +87,12 @@ const Welcome = ({ navigation }) => {
               </Text>
             </View>
             <View  style={{ width, justifyContent: "center", alignItems: "center" }}>
-            <Image source={require("../../assets/images/diagnosis.png")}
-              style={{ width: 350, height: 350 }}
-               />
+            <LottieView
+                source={require("../../assets/json/diagnosis.json")}
+                autoPlay
+                loop={true}
+                style={{ width: 450, height: 450 }}
+              />
               <Text
                 className="text-black text-center pt-5"
                 style={{ ...FONTS.body1 }}

@@ -16,6 +16,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 import languageData from "../../locals"; // Adjust the path according to your folder structure
 import { UserCircleIcon } from "react-native-heroicons/outline";
+import LottieView from "lottie-react-native";
 
 const LanguageSelectionScreen = ({ navigation }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
@@ -58,10 +59,12 @@ const LanguageSelectionScreen = ({ navigation }) => {
           alignItems: "center",
         }}
       >
-        <Image
-          source={require("../../assets/logo.png")}
-          style={{ width: 100, height: 100 }}
-        />
+        <LottieView
+                source={require("../../assets/json/welcome.json")}
+                autoPlay
+                loop={true}
+                style={{ width: 80, height: 80 }}
+              />
         <Text style={styles.title}>{currentLanguageData.title}</Text>
       </View>
       <Text style={styles.subtitle}>{currentLanguageData.subtitle}</Text>

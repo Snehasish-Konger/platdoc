@@ -7,7 +7,7 @@ const Splash = ({setIsLoading}) => {
   return (
     <View style={styles.splash}>
       <LottieView
-        source={require('../assets/splashAnim.json')}
+        source={require('../assets/json/splashAnim.json')}
         autoPlay
         loop={false}
         resizeMode="cover"

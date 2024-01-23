@@ -140,7 +140,7 @@ const Signup = ({ navigation }) => {
             disabled={userType === ""}
           />
         </View>
-        <View className="flex-row justify-center mt-7">
+        {/* <View className="flex-row justify-center mt-7">
           <Text className="text-xl text-gray-700 font-bold text-center py-5">
             Or
           </Text>
@@ -150,7 +150,7 @@ const Signup = ({ navigation }) => {
               className="w-10 h-10"
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View className="flex-row justify-center mt-7">
           <Text
             style={{ ...FONTS.body3 }}

@@ -31,14 +31,10 @@ const CameraButton = () => {
       style={{
         alignItems: "center",
         justifyContent: "center",
-        width: 60,
-        height: 60,
-        borderRadius: 35,
-        backgroundColor: COLORS.primary,
         // marginBottom: 10,
       }}
     >
-      <CameraIcon size="40" color={COLORS.white} />
+      <CameraIcon size="30" color={COLORS.black} />
     </View>
   );
 };
@@ -58,7 +54,8 @@ const Tabs = ({ navigation, image }) => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          height: "7%",
+          height: "6%",
+          // position: "absolute",
           width: "100%",
           alignSelf: "center",
           display: "flex",
@@ -69,9 +66,9 @@ const Tabs = ({ navigation, image }) => {
 
           switch (route.name) {
             case "Home":
-              return <HomeIcon size="35" color={tintColor} />;
+              return <HomeIcon size="30" color={tintColor} />;
             case "Cloud":
-              return <CloudIcon size="35" color={tintColor} />;
+              return <CloudIcon size="30" color={tintColor} />;
             case "Camera":
               return (
                 <TouchableOpacity onPress={handleImage}>
@@ -79,19 +76,19 @@ const Tabs = ({ navigation, image }) => {
                 </TouchableOpacity>
               );
             case "Search":
-              return <MagnifyingGlassIcon size="35" color={tintColor} />;
+              return <MagnifyingGlassIcon size="30" color={tintColor} />;
             case "Favourite":
-              return <HeartIcon size="35" color={tintColor} />;
+              return <HeartIcon size="30" color={tintColor} />;
             case "Community":
-              return <UserGroupIcon size="35" color={tintColor} />;
+              return <UserGroupIcon size="30" color={tintColor} />;
             case "ChatBot":
-              return <ChatBubbleLeftEllipsisIcon size="35" color={tintColor} />;
+              return <ChatBubbleLeftEllipsisIcon size="30" color={tintColor} />;
             case "Profile":
-              return <UserCircleIcon size="35" color={tintColor} />;
+              return <UserCircleIcon size="30" color={tintColor} />;
             case "Drawer":
-              return <CursorArrowRaysIcon size="35" color={tintColor} />;
+              return <CursorArrowRaysIcon size="30" color={tintColor} />;
             case "Payment":
-              return <CreditCardIcon size="35" color={tintColor} />;
+              return <CreditCardIcon size="30" color={tintColor} />;
           }
         },
       })}

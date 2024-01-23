@@ -12,6 +12,9 @@ import {
 import { COLORS, FONTS } from "../../constants";
 import messaging from "@react-native-firebase/messaging";
 import { useTranslation } from "react-i18next";
+import LottieView from "lottie-react-native";
+
+
 
 const { width } = Dimensions.get("window");
 
@@ -22,14 +25,14 @@ const PermissionScreen = ({ navigation }) => {
     {
       name: t("permissions.notifications.name"),
       description: t("permissions.notifications.description"),
-      image: require("../../assets/images/notifications.png"),
+      json: require("../../assets/json/notifications.json"),
       permissionType: "notifications",
       requestPermission: async () => await messaging().requestPermission(), // FCM permission request
     },
     {
       name: t("permissions.location.name"),
       description: t("permissions.location.description"),
-      image: require("../../assets/images/location.png"),
+      json: require("../../assets/json/location.json"),
       permissionType: PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       requestPermission: async () => {
         const granted = await PermissionsAndroid.request(
@@ -41,7 +44,7 @@ const PermissionScreen = ({ navigation }) => {
     {
       name: t("permissions.camera_storage.name"),
       description: t("permissions.camera_storage.description"),
-      image: require("../../assets/images/camera_storage.png"),
+      json: require("../../assets/json/storage.json"),
       permissionType: PermissionsAndroid.PERMISSIONS.CAMERA,
       requestPermission: async () => {
         const granted = await PermissionsAndroid.request(
@@ -100,10 +103,12 @@ const PermissionScreen = ({ navigation }) => {
             key={index}
             style={{ width, justifyContent: "center", alignItems: "center" }}
           >
-            <Image
-              source={permission.image}
-              style={{ width: 450, height: 450 }}
-            />
+            <LottieView
+                source={permission.json}
+                autoPlay
+                loop={true}
+                style={{ width: 450, height: 450 }}
+              />
             <Text style={{ ...FONTS.h1 }} className="text-black text-4xl text-center pt-5">
             {permission.name}</Text>
             <Text
