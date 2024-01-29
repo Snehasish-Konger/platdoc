@@ -27,9 +27,9 @@ import {
   Splash,
   PlantList,
   Card,
-  ChatList,
+  ExpertsListScreen,
   PermissionScreen,
-  Chat,
+  ChatScreen,
   Home,
   LanguageSelectionScreen,
   Notification,
@@ -149,13 +149,13 @@ const App = () => {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="ChatList"
-                component={ChatList}
+                name="ExpertsListScreen"
+                component={ExpertsListScreen}
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="Chat"
-                component={Chat}
+                name="ChatScreen"
+                component={ChatScreen}
                 options={{ headerShown: false }}
               />
               <Stack.Screen

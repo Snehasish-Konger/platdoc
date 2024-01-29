@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ArrowRightCircleIcon, BellIcon, Cog6ToothIcon, } from "react-native-heroicons/outline";
+import { ArrowRightCircleIcon, BellIcon, ChatBubbleBottomCenterIcon, ChatBubbleLeftEllipsisIcon, Cog6ToothIcon, } from "react-native-heroicons/outline";
 import {
   StyleSheet,
   View,
@@ -211,7 +211,7 @@ const Home = ({ navigation }) => {
             borderRadius: 25,
           }}
         >
-          <Text style={{ color: COLORS.black, ...FONTS.body4 }}>
+          <Text style={{ color: COLORS.white, ...FONTS.body4 }}>
             {item.name}
           </Text>
         </View>
@@ -314,7 +314,7 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
         </View>
       </View>
-
+        <View className="flex-1">
       {/* New Plants */}
       <View style={{ height: "25%", backgroundColor: COLORS.white }}>
         <View
@@ -456,7 +456,6 @@ const Home = ({ navigation }) => {
           </View>
         </View>
       </View>
-
       {/* Add Farmers */}
       <View style={{ height: "30%", backgroundColor: COLORS.white }}>
         <View
@@ -471,8 +470,8 @@ const Home = ({ navigation }) => {
               marginHorizontal: SIZES.padding,
             }}
           >
-            <Text style={{ color: COLORS.secondary, ...FONTS.h2 }}>
-              Added Experts
+            <Text style={{ ...FONTS.body2 }}>
+              Ask Experts
             </Text>
             <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>
               {friendList.length} total
@@ -498,36 +497,27 @@ const Home = ({ navigation }) => {
                   justifyContent: "flex-end",
                 }}
               >
-                <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>
-                  Add New
-                </Text>
                 <TouchableOpacity
                   style={{
                     marginLeft: SIZES.base,
-                    width: 40,
-                    height: 40,
+                    width: 50,
+                    height: 50,
                     borderRadius: 10,
                     alignItems: "center",
                     justifyContent: "center",
-                    backgroundColor: COLORS.gray,
+                    backgroundColor: COLORS.lightGreen,
                   }}
                   onPress={() => {
-                    console.log("Add friend on pressed");
+                    navigation.navigate("ExpertsListScreen");
                   }}
                 >
-                  <Image
-                    source={icons.plus}
-                    resizeMode="contain"
-                    style={{
-                      width: 20,
-                      height: 20,
-                    }}
-                  />
+                  <ChatBubbleLeftEllipsisIcon size="40" color={COLORS.black} />
                 </TouchableOpacity>
               </View>
             </View>
           </View>
         </View>
+      </View>
       </View>
     </SafeAreaView>
   );

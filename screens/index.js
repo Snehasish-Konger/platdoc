@@ -24,8 +24,8 @@ import PermissionScreen from "./Welcome/PermissionScreen";
 // import CallingScreen from "./VideoCall/CallingScreen";
 import Notification from "./Notification";
 
-import ChatList from "./Chat/ChatList";
-import Chat from "./Chat/Chat";
+import ExpertsListScreen from "./Chat/ExpertsListScreen";
+import ChatScreen from "./Chat/ChatScreen";
 export {
     Welcome,
     Home,
@@ -51,7 +51,7 @@ export {
     PermissionScreen,
     // IncomingCallScreen,
     // CallingScreen,
-    ChatList,
-    Chat,
+    ExpertsListScreen,
+    ChatScreen,
     Notification,
 };
