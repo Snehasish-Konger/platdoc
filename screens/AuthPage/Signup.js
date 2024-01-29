@@ -114,7 +114,7 @@ const Signup = ({ navigation }) => {
                 className="w-20 h-20"
               />
             </TouchableOpacity>
-            <Text className="text-gray-700 text-center text-base">Expert</Text>
+            <Text className="text-gray-700 text-center text-base">{t("signup.expert")}</Text>
           </View>
           <View className="flex flex-col items-center">
             <TouchableOpacity
@@ -130,7 +130,7 @@ const Signup = ({ navigation }) => {
                 className="w-20 h-20"
               />
             </TouchableOpacity>
-            <Text className="text-gray-700 text-center text-base">Farmer</Text>
+            <Text className="text-gray-700 text-center text-base">{t("signup.farmer")}</Text>
           </View>
         </View>
         {isSigningUp ? (

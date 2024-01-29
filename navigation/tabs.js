@@ -18,13 +18,6 @@ import { COLORS } from "../constants";
 import Payment from "../screens/Payments/Payment";
 const Tab = createBottomTabNavigator();
 
-// const tabOptions = {
-//     showLabel: false,
-//     style: {
-//         height: "10%",
-//     },
-// };
-
 const CameraButton = () => {
   return (
     <View
@@ -55,11 +48,11 @@ const Tabs = ({ navigation, image }) => {
         tabBarShowLabel: false,
         tabBarStyle: {
           height: "6%",
-          // position: "absolute",
           width: "100%",
           alignSelf: "center",
           display: "flex",
           justifyContent: "center",
+          backgroundColor: COLORS.white,
         },
         tabBarIcon: ({ focused }) => {
           const tintColor = focused ? COLORS.primary : COLORS.black;
@@ -96,8 +89,9 @@ const Tabs = ({ navigation, image }) => {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Cloud" component={Weather} />
       <Tab.Screen name="Camera" component={Home} />
-      <Tab.Screen name="Community" component={Profile} />
       <Tab.Screen name="Payment" component={Payment} />
+      <Tab.Screen name="Profile" component={Profile} />
+
     </Tab.Navigator>
   );
 };

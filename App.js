@@ -32,12 +32,14 @@ import {
   Chat,
   Home,
   LanguageSelectionScreen,
+  Notification,
 } from "./screens";
 import Tabs from "./navigation/tabs";
 import { useFonts } from "expo-font";
 import { I18nextProvider } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import i18n from "./i18n";
+
 
 const theme = {
   ...DefaultTheme,
@@ -48,13 +50,12 @@ const theme = {
 };
 
 const Stack = createNativeStackNavigator();
-
 // App
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userType, setUserType] = useState(null);
-  console.log(i18n.language);
+
   useEffect(() => {
     const getLanguage = async () => {
       try {
@@ -186,6 +187,11 @@ const App = () => {
               <Stack.Screen
                 name="Card"
                 component={Card}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Notification"
+                component={Notification}
                 options={{ headerShown: false }}
               />
               <Stack.Screen

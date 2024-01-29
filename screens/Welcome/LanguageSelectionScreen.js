@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Image,
   StyleSheet,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -46,12 +45,20 @@ const LanguageSelectionScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Login")} className="flex flex-row justify-end items-center">
-        <UserCircleIcon style={{width:40,height:40,marginRight:10, color:"black"}}/>
-        <Text className="text-right mr-8 text-blue-500" style={{...FONTS.body3}}
-        >{t('welcome.login')}</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Login")}
+        className="flex flex-row justify-end items-center"
+      >
+        <UserCircleIcon
+          style={{ width: 40, height: 40, marginRight: 10, color: "black" }}
+        />
+        <Text
+          className="text-right mr-8 text-blue-500"
+          style={{ ...FONTS.body3 }}
+        >
+          {t("welcome.login")}
+        </Text>
+      </TouchableOpacity>
       <View
         style={{
           flexDirection: "row",
@@ -60,11 +67,11 @@ const LanguageSelectionScreen = ({ navigation }) => {
         }}
       >
         <LottieView
-                source={require("../../assets/json/welcome.json")}
-                autoPlay
-                loop={true}
-                style={{ width: 80, height: 80 }}
-              />
+          source={require("../../assets/json/welcome.json")}
+          autoPlay
+          loop={true}
+          style={{ width: 80, height: 80 }}
+        />
         <Text style={styles.title}>{currentLanguageData.title}</Text>
       </View>
       <Text style={styles.subtitle}>{currentLanguageData.subtitle}</Text>
@@ -89,14 +96,18 @@ const LanguageSelectionScreen = ({ navigation }) => {
         ))}
       </ScrollView>
       <View style={styles.footer}>
-          <TouchableOpacity
-            style={styles.acceptButton}
-            onPress={() => navigation.navigate("PermissionScreen", { selectedLanguage: selectedLanguage })}
-          >
-            <Text style={styles.acceptButtonText}>
-              {currentLanguageData.accept}
-            </Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.acceptButton}
+          onPress={() =>
+            navigation.navigate("PermissionScreen", {
+              selectedLanguage: selectedLanguage,
+            })
+          }
+        >
+          <Text style={styles.acceptButtonText}>
+            {currentLanguageData.accept}
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.termsText}>{currentLanguageData.termsText}</Text>
       </View>
     </SafeAreaView>

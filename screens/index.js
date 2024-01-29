@@ -22,6 +22,7 @@ import LanguageSelectionScreen from "./Welcome/LanguageSelectionScreen";
 import PermissionScreen from "./Welcome/PermissionScreen";
 // import IncomingCallScreen from "./VideoCall/IncomingCallScreen";
 // import CallingScreen from "./VideoCall/CallingScreen";
+import Notification from "./Notification";
 
 import ChatList from "./Chat/ChatList";
 import Chat from "./Chat/Chat";
@@ -52,4 +53,5 @@ export {
     // CallingScreen,
     ChatList,
     Chat,
+    Notification,
 };

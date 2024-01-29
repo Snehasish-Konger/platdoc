@@ -9,11 +9,12 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS, FONTS } from "../constants";
+import { COLORS, FONTS, SIZES } from "../constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { auth } from "../config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { Picker } from "@react-native-picker/picker";
+import { ArrowLeftCircleIcon } from "react-native-heroicons/outline";
 
 const Settings = ({ navigation }) => {
   const [user, setUser] = useState(null);
@@ -45,7 +46,7 @@ const Settings = ({ navigation }) => {
   };
 
   const navigateToNotifications = () => {
-    console.log("Notifications function");
+    navigation.navigate("Notification");
   };
 
   const navigateToPrivacy = () => {
@@ -145,29 +146,25 @@ const Settings = ({ navigation }) => {
         backgroundColor: COLORS.white,
       }}
     >
-      <StatusBar barStyle="dark-content" />
       <View
         style={{
           marginHorizontal: 12,
           flexDirection: "row",
           justifyContent: "center",
+          marginTop: SIZES.padding * 0.5,
         }}
       >
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={{
             position: "absolute",
-            left: 0,
+            left: 10,
           }}
         >
-          <MaterialIcons
-            name="keyboard-arrow-left"
-            size={35}
-            color={COLORS.black}
-          />
+          <ArrowLeftCircleIcon color="black" size={30} />
         </TouchableOpacity>
 
-        <Text style={{ ...FONTS.h1, color: COLORS.primary }}>Settings</Text>
+        <Text style={{ ...FONTS.h1}}>Settings</Text>
       </View>
 
       <ScrollView style={{ marginHorizontal: 12 }}>
