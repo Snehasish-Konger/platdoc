@@ -25,6 +25,7 @@ export default {
         backgroundColor: "#ffffff",
       },
       package: "com.plantdoc.app",
+      versionCode: 1,
     },
     web: {
       favicon: "./assets/favicon.png",

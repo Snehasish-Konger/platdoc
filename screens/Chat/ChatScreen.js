@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, Image } from 'react-native';
 import { images, icons, COLORS, FONTS, SIZES } from "../../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ArrowLeftCircleIcon, CogIcon, PaperAirplaneIcon } from 'react-native-heroicons/outline';
 
 const messagesData = [
   // Assuming 'user' or 'expert' keys are used to differentiate between message senders
@@ -24,6 +25,21 @@ const ChatScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: SIZES.padding * 0.5,
+        marginBottom: SIZES.padding * 2,
+      }}
+      >
+        <TouchableOpacity onPress={() => {}}>
+          <ArrowLeftCircleIcon size={30} color={COLORS.black} />
+        </TouchableOpacity>
+        <Text style={{ ...FONTS.body2, marginLeft: SIZES.margin }}>Dr. Olivia Greene</Text>
+        <CogIcon size={30} color={COLORS.black} />
+      </View>
       <FlatList
         data={messagesData}
         keyExtractor={(item) => item.id}
@@ -40,7 +56,7 @@ const ChatScreen = () => {
           returnKeyType="send"
         />
         <TouchableOpacity onPress={() => {}}>
-          <Image source={icons.send} style={styles.icon} />
+          <PaperAirplaneIcon size={30} color={COLORS.black} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -1,5 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ArrowRightCircleIcon, BellIcon, ChatBubbleBottomCenterIcon, ChatBubbleLeftEllipsisIcon, Cog6ToothIcon, } from "react-native-heroicons/outline";
+import {
+  ArrowRightCircleIcon,
+  BellIcon,
+  ChatBubbleLeftEllipsisIcon,
+  Cog6ToothIcon,
+} from "react-native-heroicons/outline";
 import {
   StyleSheet,
   View,
@@ -8,14 +13,20 @@ import {
   Image,
   ScrollView,
   FlatList,
+  PermissionsAndroid,
+  Platform,
+  Button,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images, icons, COLORS, FONTS, SIZES } from "../constants";
 import { auth } from "../config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import LottieView from "lottie-react-native";
+import WeatherSection from "./WeatherSection";
+
 const Home = ({ navigation }) => {
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     // Set up a listener for the authentication state
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
@@ -50,7 +61,6 @@ const Home = ({ navigation }) => {
       id: 2,
       name: "Leaf Spot",
       img: images.plant3,
-
     },
     {
       id: 3,
@@ -151,8 +161,7 @@ const Home = ({ navigation }) => {
       id: 22,
       name: "Disease 23",
       img: images.plant1,
-    }
-
+    },
   ]);
 
   const [friendList, setFriendList] = useState([
@@ -178,8 +187,6 @@ const Home = ({ navigation }) => {
     },
   ]);
 
-  useEffect(() => {}, []);
-
   // Render
 
   function renderNewPlants(item, index) {
@@ -195,7 +202,7 @@ const Home = ({ navigation }) => {
           source={item.img}
           resizeMode="cover"
           style={{
-            width: SIZES.width * 0.20,
+            width: SIZES.width * 0.2,
             height: "80%",
             borderRadius: 25,
           }}
@@ -289,6 +296,7 @@ const Home = ({ navigation }) => {
           justifyContent: "space-between",
           alignItems: "center",
           marginTop: SIZES.padding * 0.5,
+          marginBottom: SIZES.padding * 0.5,
         }}
       >
         <LottieView
@@ -300,74 +308,29 @@ const Home = ({ navigation }) => {
         />
         <Text style={{ ...FONTS.h2 }}>PlantDoc</Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Notification")}
-          className="mr-5"
-        >
-          <BellIcon size="30" color={COLORS.black} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Settings")}
-          className="mr-5"
-        >
-          <Cog6ToothIcon size="30" color={COLORS.black} />
-        </TouchableOpacity>
-        </View>
-      </View>
-        <View className="flex-1">
-      {/* New Plants */}
-      <View style={{ height: "25%", backgroundColor: COLORS.white }}>
-        <View
-          style={{
-            flex: 1,
-            marginTop: SIZES.padding,
-            marginHorizontal: SIZES.padding,
-            marginBottom: SIZES.padding,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Notification")}
+            className="mr-5"
           >
-            
-            <Text style={{ color: COLORS.black, ...FONTS.body2 }}>
-              Seasonal Disease
-            </Text>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ color: COLORS.secondary, ...FONTS.body3, marginRight: 10 }}>
-                See All
-              </Text>
-            <ArrowRightCircleIcon size="30" color={COLORS.black} />
-            </View>
-          </View>
-
-          <View style={{ marginTop: SIZES.base, marginHorizontal: -SIZES.padding }}>
-            <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              data={newPlants}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item, index }) => renderNewPlants(item, index)}
-            />
-          </View>
+            <BellIcon size="30" color={COLORS.black} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Settings")}
+            className="mr-5"
+          >
+            <Cog6ToothIcon size="30" color={COLORS.black} />
+          </TouchableOpacity>
         </View>
       </View>
-
-      {/* Today's Share */}
-      <View style={{ height: "50%", backgroundColor: COLORS.white }}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: COLORS.white,
-          }}
-        >
+      <ScrollView>
+        {/* New Plants */}
+        <View style={{ height:250, backgroundColor: COLORS.white }}>
           <View
             style={{
+              flex: 1,
               marginTop: SIZES.padding,
               marginHorizontal: SIZES.padding,
+              marginBottom: SIZES.padding,
             }}
           >
             <View
@@ -377,148 +340,206 @@ const Home = ({ navigation }) => {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={{ ...FONTS.body2 }}>
-                Recent Diagnosis
+              <Text style={{ color: COLORS.black, ...FONTS.body2 }}>
+                Seasonal Disease
               </Text>
-
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("PlantList");
-                }}
-              >
-                <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text
+                  style={{
+                    color: COLORS.secondary,
+                    ...FONTS.body3,
+                    marginRight: 10,
+                  }}
+                >
                   See All
                 </Text>
-              </TouchableOpacity>
+                <ArrowRightCircleIcon size="30" color={COLORS.black} />
+              </View>
             </View>
 
             <View
               style={{
-                flexDirection: "row",
-                height: "88%",
                 marginTop: SIZES.base,
+                marginHorizontal: -SIZES.padding,
               }}
             >
-              <View style={{ flex: 1 }}>
-                <TouchableOpacity
-                  style={{ flex: 1 }}
-                  onPress={() => {
-                    navigation.navigate("PlantDetail");
-                  }}
-                >
-                  <Image
-                    source={images.plant5}
-                    resizeMode="cover"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: 20,
-                    }}
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={{ flex: 1, marginTop: SIZES.font }}
-                  onPress={() => {
-                    navigation.navigate("PlantDetail");
-                  }}
-                >
-                  <Image
-                    source={images.plant6}
-                    resizeMode="cover"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: 20,
-                    }}
-                  />
-                </TouchableOpacity>
-              </View>
-              <View style={{ flex: 1.3 }}>
-                <TouchableOpacity
-                  style={{ flex: 1, marginLeft: SIZES.font }}
-                  onPress={() => {
-                    navigation.navigate("PlantDetail");
-                  }}
-                >
-                  <Image
-                    source={images.plant7}
-                    resizeMode="cover"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      borderRadius: 20,
-                    }}
-                  />
-                </TouchableOpacity>
-              </View>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={newPlants}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item, index }) => renderNewPlants(item, index)}
+              />
             </View>
           </View>
         </View>
-      </View>
-      {/* Add Farmers */}
-      <View style={{ height: "30%", backgroundColor: COLORS.white }}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: COLORS.white,
-          }}
-        >
+
+        {/* Today's Share */}
+        <View style={{ height:500, backgroundColor: COLORS.white }}>
           <View
             style={{
-              marginTop: SIZES.radius,
-              marginHorizontal: SIZES.padding,
+              flex: 1,
+              backgroundColor: COLORS.white,
             }}
           >
-            <Text style={{ ...FONTS.body2 }}>
-              Ask Experts
-            </Text>
-            <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>
-              {friendList.length} total
-            </Text>
-            <View style={{ flexDirection: "row", height: "60%" }}>
-              {/* Friends */}
+            <View
+              style={{
+                marginTop: SIZES.padding,
+                marginHorizontal: SIZES.padding,
+              }}
+            >
               <View
                 style={{
-                  flex: 1.3,
                   flexDirection: "row",
                   alignItems: "center",
+                  justifyContent: "space-between",
                 }}
               >
-                {renderFriendsComponent()}
-              </View>
+                <Text style={{ ...FONTS.body2 }}>Recent Diagnosis</Text>
 
-              {/* Add Friend */}
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                }}
-              >
                 <TouchableOpacity
-                  style={{
-                    marginLeft: SIZES.base,
-                    width: 50,
-                    height: 50,
-                    borderRadius: 10,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: COLORS.lightGreen,
-                  }}
                   onPress={() => {
-                    navigation.navigate("ExpertsListScreen");
+                    navigation.navigate("PlantList");
                   }}
                 >
-                  <ChatBubbleLeftEllipsisIcon size="40" color={COLORS.black} />
+                  <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>
+                    See All
+                  </Text>
                 </TouchableOpacity>
+              </View>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  height: "88%",
+                  marginTop: SIZES.base,
+                }}
+              >
+                <View style={{ flex: 1 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => {
+                      navigation.navigate("PlantDetail");
+                    }}
+                  >
+                    <Image
+                      source={images.plant5}
+                      resizeMode="cover"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: 20,
+                      }}
+                    />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={{ flex: 1, marginTop: SIZES.font }}
+                    onPress={() => {
+                      navigation.navigate("PlantDetail");
+                    }}
+                  >
+                    <Image
+                      source={images.plant6}
+                      resizeMode="cover"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: 20,
+                      }}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={{ flex: 1.3 }}>
+                  <TouchableOpacity
+                    style={{ flex: 1, marginLeft: SIZES.font }}
+                    onPress={() => {
+                      navigation.navigate("PlantDetail");
+                    }}
+                  >
+                    <Image
+                      source={images.plant7}
+                      resizeMode="cover"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: 20,
+                      }}
+                    />
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-      </View>
+        {/*  Weather */}
+        <View style={{ height:300, backgroundColor: COLORS.white }}>
+        <WeatherSection  />
+        </View>
+        {/* Add Farmers */}
+        <View style={{ height:200, backgroundColor: COLORS.white }}>
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: COLORS.white,
+            }}
+          >
+            <View
+              style={{
+                marginTop: SIZES.radius,
+                marginHorizontal: SIZES.padding,
+              }}
+            >
+              <Text style={{ ...FONTS.body2 }}>Ask Experts</Text>
+              <Text style={{ color: COLORS.secondary, ...FONTS.body3 }}>
+                {friendList.length} total
+              </Text>
+              <View style={{ flexDirection: "row", height: "60%" }}>
+                {/* Friends */}
+                <View
+                  style={{
+                    flex: 1.3,
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  {renderFriendsComponent()}
+                </View>
+
+                {/* Add Friend */}
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <TouchableOpacity
+                    style={{
+                      marginLeft: SIZES.base,
+                      width: 50,
+                      height: 50,
+                      borderRadius: 10,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backgroundColor: COLORS.lightGreen,
+                    }}
+                    onPress={() => {
+                      navigation.navigate("ExpertsListScreen");
+                    }}
+                  >
+                    <ChatBubbleLeftEllipsisIcon
+                      size="40"
+                      color={COLORS.black}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
