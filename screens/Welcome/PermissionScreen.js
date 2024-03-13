@@ -35,11 +35,27 @@ const PermissionScreen = ({ navigation }) => {
       json: require("../../assets/json/location.json"),
       permissionType: PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       requestPermission: async () => {
+        try {
         const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'Location Permission',
+            message: 'This app needs access to your location.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          }
         );
-        return granted === PermissionsAndroid.RESULTS.GRANTED;
-      },
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('You can use the location');
+          return granted === PermissionsAndroid.RESULTS.GRANTED;
+        } else {
+          console.log('Location permission denied');
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    },
     },
     {
       name: t("permissions.camera_storage.name"),

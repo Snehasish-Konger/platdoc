@@ -31,6 +31,9 @@ const WeatherSection = () => {
         {
           title: "Location Access Required",
           message: "This app needs to access your location for weather updates",
+          buttonPositive: "OK",
+          buttonNegative: "Cancel",
+          buttonNeutral: "Ask Me Later" 
         }
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
@@ -60,7 +63,6 @@ const WeatherSection = () => {
   const fetchWeather = (latitude, longitude) => {
     const API_KEY = 'f4ad7b090b4443beb92151136231009'; // Replace with your actual API key
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
-
     axios.get(url)
       .then(response => {
         setWeather(response.data);
@@ -73,17 +75,15 @@ const WeatherSection = () => {
   // Assuming weather data includes a date and temperature
   const temperature = weather?.main?.temp;
   const day = new Date().toLocaleDateString('en-US', { weekday: 'long' }); // Placeholder for actual day from weather data
+  const cityName = weather?.name;
 
   return (
     <View style={styles.weatherContainer}>
       <Text style={{...FONTS.body2}}>Weather</Text>
       <View style={styles.weatherCard}>
+        <Text style={{...FONTS.body3}}>{cityName}</Text>
         <Text style={{...FONTS.body3}}>{day}</Text>
-        {permissionGranted ? (
         <Text style={{...FONTS.body3}}>{temperature}°C</Text>
-        ) : (
-          <Text style={{...FONTS.body3}}>20°C</Text>
-        )}
         {/* Display weather information or permission request based on state */}
         <Image
             style={styles.weatherIcon}
