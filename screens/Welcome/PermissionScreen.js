@@ -14,8 +14,6 @@ import messaging from "@react-native-firebase/messaging";
 import { useTranslation } from "react-i18next";
 import LottieView from "lottie-react-native";
 
-
-
 const { width } = Dimensions.get("window");
 
 const PermissionScreen = ({ navigation }) => {
@@ -30,32 +28,35 @@ const PermissionScreen = ({ navigation }) => {
       requestPermission: async () => await messaging().requestPermission(), // FCM permission request
     },
     {
+      // Location permission object
       name: t("permissions.location.name"),
       description: t("permissions.location.description"),
       json: require("../../assets/json/location.json"),
       permissionType: PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       requestPermission: async () => {
-        try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          {
-            title: 'Location Permission',
-            message: 'This app needs access to your location.',
-            buttonNeutral: 'Ask Me Later',
-            buttonNegative: 'Cancel',
-            buttonPositive: 'OK',
+        if (Platform.OS === "android") {
+          try {
+            const granted = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+              {
+                title: "Location Permission",
+                message: "This app needs access to your location.",
+                buttonNeutral: "Ask Me Later",
+                buttonNegative: "Cancel",
+                buttonPositive: "OK",
+              }
+            );
+            return granted === PermissionsAndroid.RESULTS.GRANTED;
+          } catch (err) {
+            alert("Location permission denied");
+            console.warn(err);
+            return false;
           }
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('You can use the location');
-          return granted === PermissionsAndroid.RESULTS.GRANTED;
         } else {
-          console.log('Location permission denied');
+          // iOS-specific permission handling if necessary
+          return true; // Placeholder return, adjust based on actual iOS handling
         }
-      } catch (err) {
-        console.warn(err);
-      }
-    },
+      },
     },
     {
       name: t("permissions.camera_storage.name"),
@@ -120,13 +121,17 @@ const PermissionScreen = ({ navigation }) => {
             style={{ width, justifyContent: "center", alignItems: "center" }}
           >
             <LottieView
-                source={permission.json}
-                autoPlay
-                loop={true}
-                style={{ width: 450, height: 450 }}
-              />
-            <Text style={{ ...FONTS.h1 }} className="text-black text-4xl text-center pt-5">
-            {permission.name}</Text>
+              source={permission.json}
+              autoPlay
+              loop={true}
+              style={{ width: 450, height: 450 }}
+            />
+            <Text
+              style={{ ...FONTS.h1 }}
+              className="text-black text-4xl text-center pt-5"
+            >
+              {permission.name}
+            </Text>
             <Text
               style={{
                 ...FONTS.body3,

@@ -117,7 +117,7 @@ const PlantDetail = ({ navigation }) => {
                 backgroundColor: "rgba(255,255,255,0.5)",
               }}
               onPress={() => {
-                navigation.navigate("Home");
+                navigation.goBack();
               }}
             >
               <Image
@@ -143,7 +143,7 @@ const PlantDetail = ({ navigation }) => {
               console.log("Focus on pressed");
             }}
           >
-            <SpeakerWaveIcon size="30" color={COLORS.red}/>
+            <SpeakerWaveIcon size="30" color={COLORS.red} />
           </TouchableOpacity>
         </View>
 
@@ -299,15 +299,15 @@ const PlantDetail = ({ navigation }) => {
           paddingVertical: SIZES.padding,
         }}
       >
-          <Text
-            style={{
-              paddingHorizontal: SIZES.padding,
-              color: COLORS.secondary,
-              ...FONTS.h1,
-            }}
-          >
-            About
-          </Text>
+        <Text
+          style={{
+            paddingHorizontal: SIZES.padding,
+            color: COLORS.secondary,
+            ...FONTS.h1,
+          }}
+        >
+          About
+        </Text>
         <Text
           style={{
             paddingHorizontal: SIZES.padding,
