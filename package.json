@@ -10,11 +10,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@expo/vector-icons": "f^13.0.0",
+    "@expo/vector-icons": "^13.0.0",
     "@google-ai/generativelanguage": "^1.1.0",
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-firebase/app": "^18.7.3",
-    "@react-nativef-firebase/messaging": "^18.7.3",
+    "@react-native-firebase/messaging": "^18.7.3",
     "@react-native-google-signin/google-signin": "^11.0.0",
     "@react-native-picker/picker": "2.4.10",
     "@react-navigation/bottom-tabs": "^6.5.8",
@@ -57,6 +57,7 @@
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "13.9.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-vector-icons": "^10.0.0",

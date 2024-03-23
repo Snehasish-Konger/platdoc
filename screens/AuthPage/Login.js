@@ -1,18 +1,18 @@
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  Image,
+} from "react-native";
 import React, { useState, useEffect } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
 import { COLORS, FONTS } from "../../constants";
-import {
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithCredential,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 import { auth, database } from "../../config/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import {
   GoogleSignin,
-  GoogleSigninButton,
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 import Constants from "expo-constants";
@@ -68,55 +68,85 @@ const Login = ({ navigation }) => {
     }
   };
 
+  const handleFacebookLogin = async () => {
+    alert("We are working on this feature, please use Google login");
+  };
+
   return (
-    <View className="flex-1 bg-white" style={{ backgroundColor: "#FFE4CF" }}>
-      <SafeAreaView className="flex ">
-        <View className="flex-row justify-start">
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            className="bg-yellow-400 p-2 rounded-tr-2xl rounded-bl-2xl ml-4"
-          >
-            <ArrowLeftIcon size="20" color="black" />
-          </TouchableOpacity>
+    <View className="flex-1 bg-[#fdffe8]">
+      <View className="flex-row  items-center top-10 justify-center">
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          className="ml-4 absolute left-4 top-10"
+        >
+          <ArrowLeftIcon size="30" color="black" />
+        </TouchableOpacity>
+        <View className="flex-col items-center justify-center top-6">
+          <Text style={{ ...FONTS.h1 }} className="text-center top-10">
+            {t("login.title")}
+          </Text>
+          <LottieView
+            source={require("../../assets/json/login_welcome.json")}
+            autoPlay
+            loop
+            style={{ width: 500, height: 500 }}
+          />
         </View>
-        <Text style={{ ...FONTS.h1 }} className="text-center font-bold">
-          {t("login.title")}
-        </Text>
-      </SafeAreaView>
+      </View>
       <View className="flex-1 align-middle justify-end">
         {isLoggingIn ? (
-          <View className="flex-1 justify-center items-center">
+          <View className="flex-1 justify-center items-center bg-white rounded-t-3xl">
             <LottieView
-              source={require("../../assets/json/welcome.json")}
+              source={require("../../assets/json/login.json")}
               autoPlay
               loop
               style={{ width: 500, height: 500 }}
             />
           </View>
         ) : (
-          <View className="flex-1 justify-center items-center">
-            <GoogleSigninButton
-              style={{ width: 250, height: 60 }}
-              size={GoogleSigninButton.Size.Wide}
-              color={GoogleSigninButton.Color.Dark}
-              onPress={() => handleGoogleLogin()}
-            />
-            <Text className="text-gray-500 text-lg">{t("login.acc")} </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-              <Text className="text-blue-700 text-lg">
-                {" "}
-                {t("login.signup")}
-              </Text>
-            </TouchableOpacity>
+          <View className="flex-1 justify-center items-center px-8 pt-10 bg-white rounded-t-3xl">
+            <Text
+              className=" ml-4 mb-6 justify-center text-center"
+              style={{ ...FONTS.body2 }}
+            >
+              We're glad to see you back! Please login to continue
+            </Text>
+            <View className="flex-row justify-center items-center">
+              <TouchableOpacity
+                onPress={() => handleGoogleLogin()}
+                className="flex-row mr-2 p-4 rounded-2xl justify-center items-center bg-white shadow-lg border border-gray-200"
+              >
+                <Text style={{ ...FONTS.body3 }}>Login with</Text>
+                <Image
+                  source={require("../../assets/icons/google.png")}
+                  style={{ width: 50, height: 50, marginLeft: 10 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleFacebookLogin()}
+                className="flex-row p-4 rounded-2xl justify-center items-center bg-white shadow-lg border border-gray-200"
+              >
+                <Text style={{ ...FONTS.body3 }}>Login with </Text>
+                <Image
+                  source={require("../../assets/icons/facebook.png")}
+                  style={{ width: 50, height: 50, marginLeft: 10 }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View className="flex-row items-center justify-center mt-7">
+              <Text style={{ ...FONTS.body3 }}>{t("login.acc")} </Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+                <Text className="text-blue-700" style={{ ...FONTS.body3 }}>
+                  {" "}
+                  {t("login.signup")}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
-        <Image
-          className="flex-1 justify-center bottom-0"
-          source={require("../../assets/images/login.png")}
-          style={{ width: 500, height: 490 }}
-        />
       </View>
     </View>
   );
 };
+
 export default Login;

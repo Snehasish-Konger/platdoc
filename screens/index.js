@@ -20,38 +20,39 @@ import EditProfile from "./FarmerPage/Editprofile";
 import ForgetPass from "./AuthPage/ForgetPass";
 import LanguageSelectionScreen from "./Welcome/LanguageSelectionScreen";
 import PermissionScreen from "./Welcome/PermissionScreen";
+import ArticlePage from "./Paper/ArticlePage";
 // import IncomingCallScreen from "./VideoCall/IncomingCallScreen";
 // import CallingScreen from "./VideoCall/CallingScreen";
 import Notification from "./Notification";
-
 import ExpertsListScreen from "./Chat/ExpertsListScreen";
 import ChatScreen from "./Chat/ChatScreen";
 export {
-    Welcome,
-    Home,
-    PlantDetail,
-    Weather,
-    ChatBot,
-    Signup,
-    Login,
-    ForgetPass,
-    Profile,
-    EditProfile,
-    Settings,
-    ExpertHome,
-    CourseList,
-    Cources,
-    ExpertSetting,
-    Chapters,
-    Payment,
-    Splash,
-    PlantList,
-    Card,
-    LanguageSelectionScreen,
-    PermissionScreen,
-    // IncomingCallScreen,
-    // CallingScreen,
-    ExpertsListScreen,
-    ChatScreen,
-    Notification,
+  Welcome,
+  Home,
+  PlantDetail,
+  Weather,
+  ChatBot,
+  Signup,
+  Login,
+  ForgetPass,
+  Profile,
+  EditProfile,
+  Settings,
+  ExpertHome,
+  CourseList,
+  Cources,
+  ExpertSetting,
+  Chapters,
+  Payment,
+  Splash,
+  PlantList,
+  Card,
+  LanguageSelectionScreen,
+  PermissionScreen,
+  ArticlePage,
+  // IncomingCallScreen,
+  // CallingScreen,
+  ExpertsListScreen,
+  ChatScreen,
+  Notification,
 };

@@ -1,18 +1,18 @@
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLORS, FONTS } from "../../constants";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
-import {
-  signInWithCredential,
-  GoogleAuthProvider,
-  sendEmailVerification,
-} from "firebase/auth";
+import { signInWithCredential, GoogleAuthProvider } from "firebase/auth";
 import { auth, database } from "../../config/firebaseConfig";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   GoogleSignin,
-  GoogleSigninButton,
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 import Constants from "expo-constants";
@@ -71,39 +71,47 @@ const Signup = ({ navigation }) => {
     }
   };
 
+  const handleFacebookSignUp = async () => {
+    alert("Facebook signup is not available yet");
+  };
   return (
-    <View className="flex-1" style={{ backgroundColor: "#BCDB8C" }}>
-      <SafeAreaView className="flex">
-        <View className="flex-row justify-start">
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            className="bg-green-100 p-2 rounded-2xl ml-4"
-          >
-            <ArrowLeftIcon size="20" color="black" />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ ...FONTS.h1 }} className="text-center font-bold">
-          {t("signup.title")}
-        </Text>
-        <View className="flex-row justify-center relative top-10">
-          <Image
-            source={require("../../assets/images/signup.png")}
+    <View className="flex-1 bg-[#f6f8cf]">
+      <View className="flex-row items-center justify-center top-10">
+        {/* <ImageBackground
+          source={require("../../assets/images/signup.png")}
+          style={{ width: 500, height: 500 }}
+        > */}
+
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          className=" ml-4 absolute left-4 top-10"
+        >
+          <ArrowLeftIcon size="30" color="black" />
+        </TouchableOpacity>
+        <View className="flex-col items-center justify-center top-6">
+          <Text style={{ ...FONTS.h1 }} className="text-center top-10">
+            {t("signup.title")}
+          </Text>
+          <LottieView
+            source={require("../../assets/json/signup_welcome.json")}
+            autoPlay
+            loop
             style={{ width: 500, height: 500 }}
           />
         </View>
-      </SafeAreaView>
-      <View className="flex-1 bg-white top-0 px-8 pt-10">
-        <Text
-          className="text-gray-700 ml-4 mb-6 justify-center"
-          style={{ ...FONTS.body1 }}
-        >
+        {/* </ImageBackground> */}
+      </View>
+      <View className="flex-1 px-8 pt-10 bg-white rounded-t-3xl">
+        <Text className=" ml-4 mb-6 justify-center" style={{ ...FONTS.body1 }}>
           {t("signup.question")}
         </Text>
         <View className="flex-row justify-center space-x-12">
           <View className="flex flex-col items-center">
             <TouchableOpacity
               className="p-4 rounded-full"
-              onPress={() => setUserType("expert")}
+              // onPress={() => setUserType("expert")}
+              // On press show a message that this feature is not available yet
+              onPress={() => alert("We're still working on the expert side!")}
               style={{
                 backgroundColor:
                   userType === "expert" ? "lightblue" : "transparent",
@@ -114,7 +122,9 @@ const Signup = ({ navigation }) => {
                 className="w-20 h-20"
               />
             </TouchableOpacity>
-            <Text className="text-gray-700 text-center text-base">{t("signup.expert")}</Text>
+            <Text className="text-center" style={{ ...FONTS.body4 }}>
+              {t("signup.expert")}
+            </Text>
           </View>
           <View className="flex flex-col items-center">
             <TouchableOpacity
@@ -130,7 +140,9 @@ const Signup = ({ navigation }) => {
                 className="w-20 h-20"
               />
             </TouchableOpacity>
-            <Text className="text-gray-700 text-center text-base">{t("signup.farmer")}</Text>
+            <Text className="text-center" style={{ ...FONTS.body4 }}>
+              {t("signup.farmer")}
+            </Text>
           </View>
         </View>
         {isSigningUp ? (
@@ -144,19 +156,36 @@ const Signup = ({ navigation }) => {
           </View>
         ) : (
           <View className="flex-1 justify-center items-center">
-            <GoogleSigninButton
-              style={{ width: 240, height: 50 }}
-              size={GoogleSigninButton.Size.Wide}
-              color={GoogleSigninButton.Color.Dark}
-              onPress={handleGoogleSignUp}
-              disabled={userType === ""}
-            />
-            <Text className="text-gray-500 text-lg mt-7">
-              {t("signup.acc")}{" "}
-            </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text className="text-lime-600 text-lg">{t("signup.login")}</Text>
-            </TouchableOpacity>
+            <View className="flex-row justify-center items-center">
+              <TouchableOpacity
+                onPress={() => handleGoogleSignUp()}
+                className="flex-row mr-2 p-4 rounded-2xl justify-center items-center bg-white shadow-lg border border-gray-200"
+              >
+                <Text style={{ ...FONTS.body3 }}>Signup with</Text>
+                <Image
+                  source={require("../../assets/icons/google.png")}
+                  style={{ width: 50, height: 50, marginLeft: 10 }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleFacebookSignUp()}
+                className="flex-row p-4 rounded-2xl justify-center items-center bg-white shadow-lg border border-gray-200"
+              >
+                <Text style={{ ...FONTS.body3 }}>Signup with </Text>
+                <Image
+                  source={require("../../assets/icons/facebook.png")}
+                  style={{ width: 50, height: 50, marginLeft: 10 }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View className="flex-row items-center justify-center mt-7">
+              <Text style={{ ...FONTS.body3 }}>{t("signup.acc")} </Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                <Text className="text-lime-600" style={{ ...FONTS.body3 }}>
+                  {t("signup.login")}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
       </View>

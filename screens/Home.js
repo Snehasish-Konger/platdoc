@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
   ArrowRightCircleIcon,
-  BellIcon,
   ChatBubbleLeftEllipsisIcon,
+  BellIcon,
   Cog6ToothIcon,
 } from "react-native-heroicons/outline";
 import {
@@ -13,16 +13,15 @@ import {
   Image,
   ScrollView,
   FlatList,
-  PermissionsAndroid,
-  Platform,
-  Button,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { images, icons, COLORS, FONTS, SIZES } from "../constants";
+
+import LottieView from "lottie-react-native";
+import { images, COLORS, FONTS, SIZES } from "../constants";
 import { auth } from "../config/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
-import LottieView from "lottie-react-native";
 import WeatherSection from "./WeatherSection";
+import BreakingNews from "../components/BreakingNews";
 
 const Home = ({ navigation }) => {
   const [user, setUser] = useState(null);
@@ -290,6 +289,7 @@ const Home = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header */}
       <View
         style={{
           flexDirection: "row",
@@ -306,7 +306,7 @@ const Home = ({ navigation }) => {
           className="ml-4"
           style={{ width: 50, height: 50 }}
         />
-        <Text style={{ ...FONTS.h2 }}>PlantDoc</Text>
+        <Text style={{ ...FONTS.body1 }}>Agrifit</Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("Notification")}
@@ -323,8 +323,8 @@ const Home = ({ navigation }) => {
         </View>
       </View>
       <ScrollView>
-        {/* New Plants */}
-        <View style={{ height:250, backgroundColor: COLORS.white }}>
+        {/* Plants Research Papers */}
+        <View style={{ height: 250, backgroundColor: COLORS.white }}>
           <View
             style={{
               flex: 1,
@@ -343,7 +343,12 @@ const Home = ({ navigation }) => {
               <Text style={{ color: COLORS.black, ...FONTS.body2 }}>
                 Seasonal Disease
               </Text>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ArticlePage");
+                }}
+                style={{ flexDirection: "row", alignItems: "center" }}
+              >
                 <Text
                   style={{
                     color: COLORS.secondary,
@@ -354,13 +359,13 @@ const Home = ({ navigation }) => {
                   See All
                 </Text>
                 <ArrowRightCircleIcon size="30" color={COLORS.black} />
-              </View>
+              </TouchableOpacity>
             </View>
 
             <View
               style={{
                 marginTop: SIZES.base,
-                marginHorizontal: -SIZES.padding,
+                marginHorizontal: -SIZES.padding * 0.5,
               }}
             >
               <FlatList
@@ -374,8 +379,38 @@ const Home = ({ navigation }) => {
           </View>
         </View>
 
+        {/* Article */}
+        <View
+          style={{
+            height: 250,
+            backgroundColor: COLORS.white,
+            flex: 1,
+            // marginTop: SIZES.padding,
+            marginHorizontal: SIZES.padding,
+            marginBottom: SIZES.padding,
+          }}
+        >
+          <Text
+            style={{
+              color: COLORS.black,
+              ...FONTS.body2,
+              marginBottom: SIZES.padding,
+            }}
+          >
+            New Research papers
+          </Text>
+          <View
+            style={{
+              marginTop: SIZES.base,
+              marginHorizontal: -SIZES.padding * 0.5,
+            }}
+          >
+            <BreakingNews onPress={() => navigation.navigate("ArticlePage")} />
+          </View>
+        </View>
+
         {/* Today's Share */}
-        <View style={{ height:500, backgroundColor: COLORS.white }}>
+        <View style={{ height: 500, backgroundColor: COLORS.white }}>
           <View
             style={{
               flex: 1,
@@ -473,11 +508,11 @@ const Home = ({ navigation }) => {
           </View>
         </View>
         {/*  Weather */}
-        <View style={{ height:300, backgroundColor: COLORS.white }}>
-        <WeatherSection  />
+        <View style={{ height: 300, backgroundColor: COLORS.white }}>
+          <WeatherSection />
         </View>
         {/* Add Farmers */}
-        <View style={{ height:200, backgroundColor: COLORS.white }}>
+        <View style={{ height: 200, backgroundColor: COLORS.white }}>
           <View
             style={{
               flex: 1,

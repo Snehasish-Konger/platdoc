@@ -61,30 +61,28 @@ const Welcome = ({ navigation }) => {
             // style={{ flex: 1 }}
           >
             {scripts.map((script, index) => (
-            <View
-              key={index}
-              style={{ width, justifyContent: "center", alignItems: "center" }}
-            >
-              {/* Your content for page 1 */}
-              <LottieView
-                source={script.json}
-                autoPlay
-                loop={true}
-                style={{ width: 450, height: 450 }}
-              />
-              <Text
-                className="text-black text-4xl text-center pt-5"
-                style={{ ...FONTS.body1 }}
+              <View
+                key={index}
+                style={{
+                  width,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-              {script.title}
-              </Text>
-              <Text
-                className="text-black text-center pt-5"
-                style={{ ...FONTS.body3 }}
-              >
-               {script.subtitle}
-              </Text>
-            </View>
+                {/* Your content for page 1 */}
+                <LottieView
+                  source={script.json}
+                  autoPlay
+                  loop={true}
+                  style={{ width: 450, height: 450 }}
+                />
+                <Text className="text-center pt-5" style={{ ...FONTS.body1 }}>
+                  {script.title}
+                </Text>
+                <Text className=" text-center pt-5" style={{ ...FONTS.body3 }}>
+                  {script.subtitle}
+                </Text>
+              </View>
             ))}
           </ScrollView>
         </View>
@@ -119,13 +117,11 @@ const Welcome = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <View className="flex-row justify-center">
-            <Text
-              className="text-black text-lg"
-            >
-              {t("welcome.script")} {" "}
-            </Text>
+            <Text className="text-black text-lg">{t("welcome.script")} </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text className=" text-blue-500 text-lg">{t("welcome.login")}</Text>
+              <Text className=" text-blue-500 text-lg">
+                {t("welcome.login")}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

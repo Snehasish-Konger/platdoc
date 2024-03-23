@@ -60,11 +60,8 @@ const LanguageSelectionScreen = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
       <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        className="flex-row items-center justify-center"
+        // style={{ marginTop: 50 }}
       >
         <LottieView
           source={require("../../assets/json/welcome.json")}
@@ -123,12 +120,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
+    ...FONTS.body1,
     textAlign: "center",
   },
   subtitle: {
-    fontSize: 18,
+    ...FONTS.body3,
     textAlign: "center",
     marginBottom: 20,
   },
@@ -151,11 +147,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   languageLabel: {
-    fontSize: 20,
-    fontWeight: "bold",
+    ...FONTS.body2,
   },
   languageScript: {
-    fontSize: 16,
+    ...FONTS.body4,
     color: "#666",
   },
   selectedIndicator: {
@@ -181,11 +176,10 @@ const styles = StyleSheet.create({
   },
   acceptButtonText: {
     color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
+    ...FONTS.body2,
   },
   termsText: {
-    fontSize: 16,
+    ...FONTS.body4,
     color: "#555",
     textAlign: "center",
   },

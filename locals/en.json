@@ -1,7 +1,7 @@
 {
   "label": "English",
   "title": "Welcome!",
-  "subtitle": "Select your PlantDoc language",
+  "subtitle": "Select your Agrifit language",
   "script": "Learn farming in your language",
   "termsText": "By tapping Accept, you agree to the Terms of Service and Privacy Policy",
   "accept": "Accept",
@@ -22,7 +22,7 @@
     "allow": "Allow"
   },
   "welcome": {
-    "title1": "Welcome to PlantDoc!",
+    "title1": "Welcome to Agrifit!",
     "subtitle1": "Your personal plant doctor",
     "title2": "Take a picture of your plant",
     "subtitle2": "Scan your plant or upload a picture from your gallery",
@@ -36,8 +36,8 @@
     "title": "Welcome Back!",
     "acc": "Don't have an account?",
     "signup": "Sign up"
-    },
-    "signup": {
+  },
+  "signup": {
     "title": "Create an Account",
     "acc": "Already have an account?",
     "login": "Log in",
