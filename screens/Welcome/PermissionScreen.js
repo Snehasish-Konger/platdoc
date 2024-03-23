@@ -126,10 +126,7 @@ const PermissionScreen = ({ navigation }) => {
               loop={true}
               style={{ width: 450, height: 450 }}
             />
-            <Text
-              style={{ ...FONTS.h1 }}
-              className="text-black text-4xl text-center pt-5"
-            >
+            <Text style={{ ...FONTS.h1 }} className="text-center pt-5">
               {permission.name}
             </Text>
             <Text
@@ -138,7 +135,7 @@ const PermissionScreen = ({ navigation }) => {
                 marginHorizontal: 20,
                 textAlign: "center",
               }}
-              className="text-black text-center pt-5"
+              className=" text-center pt-5"
             >
               {permission.description}
             </Text>
@@ -149,7 +146,7 @@ const PermissionScreen = ({ navigation }) => {
               >
                 <Text
                   style={{ ...FONTS.body2 }}
-                  className="text-gray-900 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 "
+                  className=" rounded-full px-5 py-2.5 me-2 mb-2 "
                 >
                   {t("permissions.skip")}
                 </Text>
@@ -160,7 +157,7 @@ const PermissionScreen = ({ navigation }) => {
               >
                 <Text
                   style={{ ...FONTS.body2 }}
-                  className="text-white bg-green-700  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+                  className="text-white bg-green-700 rounded-full px-5 py-2.5 text-center me-2 mb-2"
                 >
                   {t("permissions.allow")}
                 </Text>

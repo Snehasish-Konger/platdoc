@@ -109,17 +109,17 @@ const Welcome = ({ navigation }) => {
             onPress={() => navigation.navigate("Signup")}
             className="py-3 bg-green-400 mx-7 rounded-xl"
           >
-            <Text
-              style={{ ...FONTS.body2 }}
-              className="text-xl text-center text-gray-700"
-            >
+            <Text style={{ ...FONTS.body2 }} className="text-center ">
               {t("welcome.signup")}
             </Text>
           </TouchableOpacity>
           <View className="flex-row justify-center">
-            <Text className="text-black text-lg">{t("welcome.script")} </Text>
+            <Text style={{ ...FONTS.body3 }}>{t("welcome.script")} </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text className=" text-blue-500 text-lg">
+              <Text
+                className=" text-blue-500 text-lg"
+                style={{ ...FONTS.body3 }}
+              >
                 {t("welcome.login")}
               </Text>
             </TouchableOpacity>
